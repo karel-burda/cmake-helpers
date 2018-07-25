@@ -1,0 +1,5 @@
+macro(_assert expression)
+    if (NOT ${expression})
+        message(FATAL_ERROR "'${expression}' is not true")
+    endif()
+endmacro()

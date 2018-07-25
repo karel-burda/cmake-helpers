@@ -1,0 +1,12 @@
+# Sets the variable "_WINDOWS_VERSION" with correct version of Windows OS
+# Usage: _get_windows_version()
+message(STATUS "CMAKE_SYSTEM_VERSION: ${CMAKE_SYSTEM_VERSION}")
+message(STATUS "CMAKE_SYSTEM_NAME: ${CMAKE_SYSTEM_NAME}")
+function(_get_windows_version)
+    if (WIN32 AND CMAKE_SYSTEM_VERSION)
+        set(_WINDOWS_VERSION ${CMAKE_SYSTEM_VERSION})
+        string(REPLACE "." "" _WINDOWS_VERSION ${_WINDOWS_VERSION})
+        string(REGEX REPLACE "([0-9])" "0\\1" _WINDOWS_VERSION ${_WINDOWS_VERSION})
+        set(_WINDOWS_VERSION "0x${_WINDOWS_VERSION}" PARENT_SCOPE)
+    endif()
+endfunction()
