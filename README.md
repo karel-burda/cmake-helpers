@@ -1,10 +1,11 @@
 ![Version](https://img.shields.io/badge/version-0.1.0-green.svg)
 [![License](https://img.shields.io/badge/license-MIT_License-green.svg?style=flat)](LICENSE)
+[![Build Status](https://travis-ci.org/karel-burda/cmake-helpers.svg?branch=develop)](https://travis-ci.org/karel-burda/cmake-helpers)
 
 # Introduction
 `cmake-helpers` features tiny cmake-related functions and macros I'm using across my projects based on CMake.
 
-See [cmake-helpers](cmake-helpers/timers/exceptions.h) for main functionality and [tests/unit](tests/unit) for unit tests.
+See [cmake-helpers](cmake-helpers) for main functionality and [tests/unit](tests/unit) for unit tests.
 
 # Build Process
 The mentioned build process is just for development, the functionality might be, of course, used as a stand-alone.
