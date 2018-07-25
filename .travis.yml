@@ -12,10 +12,11 @@ jobs:
   include:
      - stage: generation, tests
        dist: trusty
-       language: cpp
        os: linux
        script:
          - set -e
          - cmake -Bbuild -H.
-         - pushd tests/unit && cmake -P run-all-tests.cmake
+         - pushd tests/unit
+         - cmake -P run-all-tests.cmake
+         - popd
          - set +e
