@@ -13,11 +13,9 @@ jobs:
      - stage: generation, tests
        dist: trusty
        language: cpp
-       compiler: clang
        os: linux
        script:
          - set -e
          - cmake -Bbuild -H.
-         - pushd tests/unit
-         - cmake -P run-all-tests.cmake
+         - pushd tests/unit && cmake -P run-all-tests.cmake
          - set +e
