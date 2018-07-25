@@ -8,10 +8,7 @@
 See [cmake-helpers](cmake-helpers) for main functionality and [tests/unit](tests/unit) for unit tests.
 
 # Build Process
-The mentioned build process is just for development, the functionality might be, of course, used as a stand-alone.
-Library itself is just header-only, so no need for additional linking, just threading library might need to be linked to the final executable on most Linux standard library implementations. See section [Usage](#Usage) for more info.
-
-For generation of project containing the `cmake-heleprs` run the cmake in the top-level directory like this:
+For generation of project containing the implementation and tests, run the cmake in the top-level directory like this:
 
 `cmake .`
 
