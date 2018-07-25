@@ -23,6 +23,8 @@ You can of course specify ordinary cmake options like build type (debug, release
 # Unit Tests
 For running the tests, execute
 
-`cmake -P run-all-tests.cmake` inside the [tests/unit](tests/unit).
+`cmake -P run-all-tests.cmake`
+
+inside the [tests/unit](tests/unit).
 
 For the time being, the tests are just sanity checks (using direct script execution), whether the functions and macros are "executable".
