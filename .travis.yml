@@ -1,0 +1,23 @@
+stages:
+  - generation, tests
+
+notifications:
+  email:
+    on_success: never
+    on_failure: always
+    recipients:
+      - karelburda89@gmail.com
+
+jobs:
+  include:
+     - stage: generation, tests
+       dist: trusty
+       language: cpp
+       compiler: clang
+       os: linux
+       script:
+         - set -e
+         - cmake -Bbuild -H.
+         - pushd tests/unit
+         - cmake -P run-all-tests.cmake
+         - set +e
