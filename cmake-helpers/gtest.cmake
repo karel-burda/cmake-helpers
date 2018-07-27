@@ -5,10 +5,8 @@ macro(_download_and_build_gtest _GTEST_TARGET_NAME _GTEST_BUILD_VARIANT _GTEST_S
 
     # We cannot use "ExternalProject_Add", since there's no options to disable submodules  
     # and this causes problems mainly on Windows version of git
-    # TODO: Optimization
     if(NOT EXISTS "${_GTEST_SOURCE_DIR}")
-        # TODO: perform a shallow clone on specific tag, but the gtest is currently not build-able on MSVC (1.7.0 and 1.8.0)
-        execute_process(COMMAND git clone https://github.com/google/googletest.git ${_GTEST_SOURCE_DIR_NAME}
+        execute_process(COMMAND git clone --depth=1 https://github.com/google/googletest.git ${_GTEST_SOURCE_DIR_NAME}
                     WORKING_DIRECTORY ${CMAKE_BINARY_DIR})
     endif()
 
@@ -22,7 +20,7 @@ macro(_download_and_build_gtest _GTEST_TARGET_NAME _GTEST_BUILD_VARIANT _GTEST_S
                        COMMAND ${CMAKE_COMMAND} --build . --config ${_GTEST_BUILD_VARIANT}
                        WORKING_DIRECTORY ${_GTEST_SOURCE_DIR})
 
-    include_directories(SYSTEM ${_GTEST_SOURCE_DIR}/googletest/include)
+    target_include_directories(${PROJECT_NAME} SYSTEM ${_GTEST_SOURCE_DIR}/googletest/include)
     link_directories(${PROJECT_NAME} ${_GTEST_SOURCE_DIR}/googletest)
     link_directories(${PROJECT_NAME} ${_GTEST_SOURCE_DIR}/googletest/${_GTEST_BUILD_VARIANT})
 endmacro()
