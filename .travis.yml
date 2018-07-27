@@ -15,8 +15,8 @@ jobs:
        os: linux
        script:
          - set -e
+
          - cmake -Bbuild -H.
-         - pushd tests/unit
-         - cmake -P run-all-tests.cmake
-         - popd
+         - cmake -Bbuild -H. -DRUN_UNIT_TESTS:BOOL=ON -DRUN_INTEGRATION_TESTS:BOOL=ON
+
          - set +e

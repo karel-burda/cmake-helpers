@@ -1,7 +1,5 @@
 # Sets the variable "_WINDOWS_VERSION" with correct version of Windows OS
 # Usage: _get_windows_version()
-message(STATUS "CMAKE_SYSTEM_VERSION: ${CMAKE_SYSTEM_VERSION}")
-message(STATUS "CMAKE_SYSTEM_NAME: ${CMAKE_SYSTEM_NAME}")
 function(_get_windows_version)
     if (WIN32 AND CMAKE_SYSTEM_VERSION)
         set(_WINDOWS_VERSION ${CMAKE_SYSTEM_VERSION})

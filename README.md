@@ -1,4 +1,4 @@
-![Version](https://img.shields.io/badge/version-0.1.0-green.svg)
+![Version](https://img.shields.io/badge/version-0.5.0-green.svg)
 [![License](https://img.shields.io/badge/license-MIT_License-green.svg?style=flat)](LICENSE)
 [![Build Status](https://travis-ci.org/karel-burda/cmake-helpers.svg?branch=develop)](https://travis-ci.org/karel-burda/cmake-helpers)
 
@@ -18,11 +18,9 @@ I personally prefer to specify a separate build directory explicitly:
 
 You can of course specify ordinary cmake options like build type (debug, release with debug info, ...), used generator, etc.
 
-# Unit Tests
-For running the tests, execute
+# Tests
+For running unit and integration tests, execute
 
-`cmake -P run-all-tests.cmake`
+`cmake . -DRUN_UNIT_TESTS:BOOL=ON -DRUN_INTEGRATION_TESTS:BOOL=OFF`
 
-inside the [tests/unit](tests/unit).
-
-For the time being, the tests are just sanity checks (using direct script execution), whether the functions and macros are "executable".
+Tests are being run in the Continuous Integration environment.

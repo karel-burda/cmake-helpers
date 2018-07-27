@@ -1,10 +1,10 @@
 # Groups given files automatically according to their path in the file-system
-# Usage: source_group_by_folder("${ALL_FILES}")
-macro(source_group_by_folder files_to_group)
+# Usage: _source_group_by_folder("${ALL_FILES}")
+macro(_source_group_by_folder _FILES_TO_GROUP)
     set(SOURCE_GROUP_DELIMITER "/")
     set(last_dir "")
     set(files "")
-    foreach(file ${files_to_group})
+    foreach(file ${_FILES_TO_GROUP})
         if(NOT IS_ABSOLUTE ${file})
             get_filename_component(file "${file}" ABSOLUTE)
         endif()

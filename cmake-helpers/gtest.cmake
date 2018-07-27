@@ -25,6 +25,7 @@ macro(_download_and_build_gtest _GTEST_TARGET_NAME _GTEST_BUILD_VARIANT _GTEST_S
     include_directories(SYSTEM ${_GTEST_SOURCE_DIR}/googletest/include)
     link_directories(${PROJECT_NAME} ${_GTEST_SOURCE_DIR}/googletest)
     link_directories(${PROJECT_NAME} ${_GTEST_SOURCE_DIR}/googletest/${_GTEST_BUILD_VARIANT})
+endmacro()
 
 macro(_add_compile_options_for_gtest)
     if (WIN32)

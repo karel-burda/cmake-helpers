@@ -1,5 +1,5 @@
-macro(_print_status_message MESSAGE)
-    message(STATUS "${PROJECT_NAME}: ${MESSAGE}")
+macro(_print_status_message _MESSAGE)
+    message(STATUS "${PROJECT_NAME}: ${_MESSAGE}")
 endmacro()
 
 macro(_print_project_version)
