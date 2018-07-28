@@ -12,7 +12,3 @@ macro(_set_default_build_type BUILD_TYPE)
         set(CMAKE_BUILD_TYPE ${BUILD_TYPE})
     endif()
 endmacro()
-
-# This is recommended as well:
-#set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
-#set_property(GLOBAL PROPERTY USE_FOLDERS ON)
