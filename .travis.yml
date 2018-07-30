@@ -16,7 +16,7 @@ jobs:
        script:
          - set -e
 
-         - cmake -Bbuild -H. --warn-uninitialized --warn-unused-vars
-         - cmake -Bbuild -H. -DRUN_UNIT_TESTS:BOOL=ON -DRUN_INTEGRATION_TESTS:BOOL=ON --warn-uninitialized --warn-unused-vars
+         - cmake -Bbuild -H.
+         - cmake -Bbuild -H. -DRUN_UNIT_TESTS:BOOL=ON -DRUN_INTEGRATION_TESTS:BOOL=ON
 
          - set +e
