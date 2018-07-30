@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.6 FATAL_ERROR)
 
-project(integration-tests VERSION 0.5.0 LANGUAGES NONE)
+project(integration-tests VERSION 0.6.0 LANGUAGES NONE)
 
 set(SRCS
     get-windows-version.test.cmake
