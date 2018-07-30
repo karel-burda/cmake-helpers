@@ -1,4 +1,5 @@
-macro(_download_and_build_gtest _GTEST_TARGET_NAME _GTEST_BUILD_VARIANT _GTEST_SOURCE_DIR_NAME)
+# Place this macro before the "add_executable" or "add_library" call
+macro(_download_and_build_gtest _GTEST_TARGET_NAME _GTEST_BUILD_VARIANT _GTEST_SOURCE_DIR_NAME _REVISION)
     set(_GTEST_SOURCE_DIR "${CMAKE_BINARY_DIR}/${_GTEST_SOURCE_DIR_NAME}")
 
     add_custom_target(${_GTEST_TARGET_NAME} SOURCES "")
@@ -6,12 +7,13 @@ macro(_download_and_build_gtest _GTEST_TARGET_NAME _GTEST_BUILD_VARIANT _GTEST_S
     # We cannot use "ExternalProject_Add", since there's no options to disable submodules  
     # and this causes problems mainly on Windows version of git
     if(NOT EXISTS "${_GTEST_SOURCE_DIR}")
-        execute_process(COMMAND git clone --depth=1 https://github.com/google/googletest.git ${_GTEST_SOURCE_DIR_NAME}
+        # cannot do shallow clone because of later force checkout
+        execute_process(COMMAND git clone https://github.com/google/googletest.git ${_GTEST_SOURCE_DIR_NAME}
                     WORKING_DIRECTORY ${CMAKE_BINARY_DIR})
     endif()
 
     add_custom_command(TARGET ${_GTEST_TARGET_NAME} PRE_BUILD
-                       COMMAND git checkout -f 0957cce368316577aae5ddfffcb67f24621d69e7
+                       COMMAND git checkout -f ${_REVISION}
                        WORKING_DIRECTORY ${_GTEST_SOURCE_DIR})
     add_custom_command(TARGET ${_GTEST_TARGET_NAME} POST_BUILD
                        COMMAND ${CMAKE_COMMAND} -DBUILD_GMOCK:BOOL=OFF -DBUILD_GTEST:BOOL=ON -DCMAKE_BUILD_TYPE=${_GTEST_BUILD_VARIANT} .
