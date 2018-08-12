@@ -23,7 +23,7 @@ macro(_download_and_build_gtest _GTEST_TARGET_NAME _GTEST_BUILD_VARIANT _GTEST_S
                        WORKING_DIRECTORY ${_GTEST_SOURCE_DIR})
 
     # deliberately not using "target_include_directories" because of integration tests (would throw incompatible target error)
-    include_directories(${PROJECT_NAME} SYSTEM ${_GTEST_SOURCE_DIR}/googletest/include)
+    target_include_directories(${PROJECT_NAME} SYSTEM PUBLIC ${_GTEST_SOURCE_DIR}/googletest/include)
     link_directories(${PROJECT_NAME} ${_GTEST_SOURCE_DIR}/googletest)
     link_directories(${PROJECT_NAME} ${_GTEST_SOURCE_DIR}/googletest/${_GTEST_BUILD_VARIANT})
 endmacro()
