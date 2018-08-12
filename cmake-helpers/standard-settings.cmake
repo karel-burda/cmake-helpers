@@ -3,7 +3,7 @@ macro(_set_standards C_STANDARD CXX_STANDARD)
     set(CMAKE_C_STANDARD ${C_STANDARD})
     set(CMAKE_C_STANDARD_REQUIRED ON)
     set(CMAKE_CXX_STANDARD ${CXX_STANDARD})
-   set(CMAKE_CXX_STANDARD_REQUIRED ON)
+    set(CMAKE_CXX_STANDARD_REQUIRED ON)
 endmacro()
 
 macro(_set_default_build_type BUILD_TYPE)
