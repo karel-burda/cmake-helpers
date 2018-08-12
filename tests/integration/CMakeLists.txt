@@ -10,6 +10,7 @@ set(SRCS
 add_custom_target(${PROJECT_NAME} SOURCES ${SRCS})
 
 add_executable(gtest_test gtest.cpp)
+set_target_properties(gtest_test PROPERTIES LINKER_LANGUAGE CXX)
 
 if(${RUN_INTEGRATION_TESTS})
     include("run-all-integration-tests.cmake")
