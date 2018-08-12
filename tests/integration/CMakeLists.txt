@@ -9,6 +9,8 @@ set(SRCS
 
 add_custom_target(${PROJECT_NAME} SOURCES ${SRCS})
 
+add_executable(gtest_test gtest.cpp)
+
 if(${RUN_INTEGRATION_TESTS})
     include("run-all-integration-tests.cmake")
 endif()
