@@ -1,6 +1,6 @@
-cmake_minimum_required(VERSION 3.6 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.8 FATAL_ERROR)
 
-project(unit-tests VERSION 0.5.0 LANGUAGES NONE)
+project(unit-tests VERSION 0.7.0 LANGUAGES NONE)
 
 set(SRCS
     messages.test.cmake
@@ -10,6 +10,8 @@ set(SRCS
     run-all-unit-tests.cmake)
 
 add_custom_target(${PROJECT_NAME} SOURCES ${SRCS})
+
+add_executable(dummy-cpp-unit dummy.cpp)
 
 if(${RUN_UNIT_TESTS})
     include("run-all-unit-tests.cmake")

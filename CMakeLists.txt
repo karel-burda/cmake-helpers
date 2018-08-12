@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.6 FATAL_ERROR)
 
-project(cmake-helpers VERSION 0.6.0 LANGUAGES NONE)
+#project(cmake-helpers VERSION 0.6.0 LANGUAGES NONE)
 
 add_subdirectory(cmake-helpers)
 add_subdirectory(tests/integration)

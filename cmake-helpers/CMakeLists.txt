@@ -1,4 +1,6 @@
-cmake_minimum_required(VERSION 3.6 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.8 FATAL_ERROR)
+
+project(cmake-helpers VERSION 0.7.0 LANGUAGES NONE)
 
 set(OTHER
     ../README.md
