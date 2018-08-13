@@ -13,14 +13,16 @@ endif()
 
 add_executable(${PROJECT_NAME} ${SRCS})
 
-target_sources(${PROJECT_NAME} PRIVATE gtest.cpp)
+if(${RUN_INTEGRATION_TESTS})
+    target_sources(${PROJECT_NAME} PRIVATE gtest.cpp)
 
-target_link_libraries(
-    ${PROJECT_NAME}
-        PRIVATE
-            gtest
-            gtest_main)
+    target_link_libraries(
+        ${PROJECT_NAME}
+            PRIVATE
+                gtest
+                gtest_main)
 
-add_dependencies(${PROJECT_NAME} gtest-build)
+    add_dependencies(${PROJECT_NAME} gtest-build)
 
-_add_compile_options_for_gtest(${PROJECT_NAME})
+    _add_compile_options_for_gtest(${PROJECT_NAME})
+endif()
