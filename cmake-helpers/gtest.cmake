@@ -1,5 +1,5 @@
-# Place this macro before the "add_executable" or "add_library" call
-macro(_download_and_build_gtest _TARGET _GTEST_TARGET_NAME _GTEST_BUILD_VARIANT _GTEST_SOURCE_DIR_NAME _REVISION)
+# Place this macro before before the "add_executable" or "add_library" call
+macro(_download_and_build_gtest _GTEST_TARGET_NAME _GTEST_BUILD_VARIANT _GTEST_SOURCE_DIR_NAME _REVISION)
     set(_GTEST_SOURCE_DIR "${CMAKE_BINARY_DIR}/${_GTEST_SOURCE_DIR_NAME}")
 
     add_custom_target(${_GTEST_TARGET_NAME} SOURCES "")
@@ -9,7 +9,7 @@ macro(_download_and_build_gtest _TARGET _GTEST_TARGET_NAME _GTEST_BUILD_VARIANT 
     if(NOT EXISTS "${_GTEST_SOURCE_DIR}")
         # cannot do shallow clone because of later force checkout
         execute_process(COMMAND git clone https://github.com/google/googletest.git ${_GTEST_SOURCE_DIR_NAME}
-                    WORKING_DIRECTORY ${CMAKE_BINARY_DIR})
+                        WORKING_DIRECTORY ${CMAKE_BINARY_DIR})
     endif()
 
     add_custom_command(TARGET ${_GTEST_TARGET_NAME} PRE_BUILD
@@ -22,8 +22,7 @@ macro(_download_and_build_gtest _TARGET _GTEST_TARGET_NAME _GTEST_BUILD_VARIANT 
                        COMMAND ${CMAKE_COMMAND} --build . --config ${_GTEST_BUILD_VARIANT}
                        WORKING_DIRECTORY ${_GTEST_SOURCE_DIR})
 
-    # deliberately not using "target_include_directories" because of integration tests (would throw incompatible target error)
-    target_include_directories(${_TARGET} SYSTEM PUBLIC ${_GTEST_SOURCE_DIR}/googletest/include)
+    include_directories(SYSTEM ${_GTEST_SOURCE_DIR}/googletest/include)
     link_directories(${_GTEST_SOURCE_DIR}/googletest googletest/${_GTEST_BUILD_VARIANT})
 endmacro()
 

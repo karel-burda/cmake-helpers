@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.8 FATAL_ERROR)
 
-project(unit-tests VERSION 0.7.0 LANGUAGES NONE)
+project(unit-tests VERSION 0.7.4 LANGUAGES NONE)
 
 set(SRCS
     messages.test.cmake

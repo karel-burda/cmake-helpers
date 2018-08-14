@@ -18,5 +18,6 @@ jobs:
 
          - cmake -Bbuild -H.
          - cmake -Bbuild -H. -DRUN_UNIT_TESTS:BOOL=ON -DRUN_INTEGRATION_TESTS:BOOL=ON
+         - cmake --build build --target integration-tests --config Release
 
          - set +e
