@@ -10,6 +10,7 @@ set(SRCS
 if(${RUN_INTEGRATION_TESTS})
     include("run-all-integration-tests.cmake")
 
+    include(${CMAKE_SOURCE_DIR}/cmake-helpers/messages.cmake)
     include(${CMAKE_SOURCE_DIR}/cmake-helpers/threads.cmake)
 
     add_executable(${PROJECT_NAME} ${SRCS})
