@@ -10,6 +10,8 @@ set(SRCS
 if(${RUN_INTEGRATION_TESTS})
     include("run-all-integration-tests.cmake")
 
+    include(${CMAKE_SOURCE_DIR}/cmake-helpers/threads.cmake)
+
     add_executable(${PROJECT_NAME} ${SRCS})
 
     enable_language(C CXX)
@@ -24,6 +26,7 @@ if(${RUN_INTEGRATION_TESTS})
     add_dependencies(${PROJECT_NAME} gtest-build)
 
     _add_compile_options_for_gtest(${PROJECT_NAME})
+    _link_threads_if_available(${PROJECT_NAME})
 else()
     add_custom_target(${PROJECT_NAME} ${SRCS})
 endif()
