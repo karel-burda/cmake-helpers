@@ -16,8 +16,8 @@ macro(_gtest_download_and_build _GTEST_TARGET_NAME _GTEST_BUILD_VARIANT _GTEST_S
                        COMMAND git checkout -f ${_REVISION}
                        WORKING_DIRECTORY ${_GTEST_SOURCE_DIR})
     add_custom_command(TARGET ${_GTEST_TARGET_NAME} POST_BUILD
-                       COMMAND ${CMAKE_COMMAND} -DBUILD_GMOCK:BOOL=OFF -DBUILD_GTEST:BOOL=ON -DGTEST_HAS_TR1_TUPLE=0 -DCMAKE_BUILD_TYPE=${_GTEST_BUILD_VARIANT} .
-                       WORKING_DIRECTORY ${_GTEST_SOURCE_DIR}/googletest)
+                       COMMAND ${CMAKE_COMMAND} -DBUILD_GMOCK:BOOL=OFF -DBUILD_GTEST:BOOL=ON -DCMAKE_BUILD_TYPE=${_GTEST_BUILD_VARIANT} .
+                       WORKING_DIRECTORY ${_GTEST_SOURCE_DIR})
     add_custom_command(TARGET ${_GTEST_TARGET_NAME} POST_BUILD
                        COMMAND ${CMAKE_COMMAND} --build . --config ${_GTEST_BUILD_VARIANT}
                        WORKING_DIRECTORY ${_GTEST_SOURCE_DIR})
