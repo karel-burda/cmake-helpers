@@ -5,7 +5,7 @@
 # Introduction
 `cmake-helpers` features tiny cmake-related functions and macros I'm using across my projects based on CMake.
 
-See [cmake-helpers](cmake-helpers) for main functionality and [tests/unit](tests/unit) for unit tests.
+See [cmake-helpers](cmake-helpers) for main functionality and [tests](tests) for tests.
 
 # Build Process
 For generation of project containing the implementation and tests, run the cmake in the top-level directory like this:
