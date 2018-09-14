@@ -22,6 +22,7 @@ macro(_gtest_download_and_build _GTEST_TARGET_NAME _GTEST_BUILD_VARIANT _GTEST_S
                        COMMAND ${CMAKE_COMMAND} --build . --config ${_GTEST_BUILD_VARIANT}
                        WORKING_DIRECTORY ${_GTEST_SOURCE_DIR})
 
+    link_directories(${_GTEST_SOURCE_DIR}/googletest/${_GTEST_BUILD_VARIANT})
     link_directories(${_GTEST_SOURCE_DIR}/googletest)
 endmacro()
 
