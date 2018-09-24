@@ -31,7 +31,7 @@ macro(_gtest_resolve_build_options _TARGET)
     _gtest_link(${_TARGET})
     _gtest_add_compile_options(${_TARGET})
 
-    include("${CMAKE_CURRENT_LIST_DIR}/threads.cmake")
+    include("${CMAKE_SOURCE_DIR}/cmake-helpers/cmake-helpers/threads.cmake")
     _link_threads_if_available(${_TARGET})
 endmacro()
 
@@ -48,8 +48,5 @@ macro(_gtest_link _TARGET)
 endmacro()
 
 macro(_gtest_add_compile_options _TARGET)
-    if (MSVC)
-        target_compile_options(${_TARGET} PUBLIC /MT)
-    endif()
-
+    target_compile_options(${_TARGET} PUBLIC $<$<CXX_COMPILER_ID:MSVC>:/MT>)
 endmacro()
