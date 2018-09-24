@@ -12,4 +12,5 @@ macro(_coverage_add_build_options _TARGET)
             ${_TARGET}
                 PROPERTIES
                     LINK_FLAGS "-fprofile-arcs -ftest-coverage")
+    endif()
 endmacro()
