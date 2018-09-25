@@ -31,7 +31,6 @@ macro(_gtest_resolve_build_options _TARGET)
     _gtest_link(${_TARGET})
     _gtest_add_compile_options(${_TARGET})
 
-    include("${CMAKE_SOURCE_DIR}/cmake-helpers/cmake-helpers/threads.cmake")
     _link_threads_if_available(${_TARGET})
 endmacro()
 
