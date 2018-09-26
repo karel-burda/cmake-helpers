@@ -8,6 +8,12 @@ macro(_coverage_add_build_options _TARGET)
                     -fcoverage-mapping
                     -fprofile-instr-generate)
 
+        target_compile_options(
+            ${_TARGET}
+                PRIVATE $<$<CMAKE_CXX_COMPILER_ID:Clang>:
+                    -fcoverage-mapping
+                    -fprofile-instr-generate>)
+
         set_target_properties(
             ${_TARGET}
                 PROPERTIES
