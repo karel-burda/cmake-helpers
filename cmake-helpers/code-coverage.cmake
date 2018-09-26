@@ -4,9 +4,7 @@ macro(_coverage_add_build_options _TARGET)
             ${_TARGET}
                 PRIVATE
                     -fprofile-arcs
-                    -ftest-coverage
-                    -fcoverage-mapping
-                    -fprofile-instr-generate)
+                    -ftest-coverage)
 
         target_compile_options(
             ${_TARGET}
