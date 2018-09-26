@@ -10,7 +10,7 @@ macro(_coverage_add_build_options _TARGET)
 
         target_compile_options(
             ${_TARGET}
-                PRIVATE $<$<CMAKE_CXX_COMPILER_ID:Clang>:
+                PRIVATE $<$<CXX_COMPILER_ID:Clang>:
                     -fcoverage-mapping
                     -fprofile-instr-generate>)
 
