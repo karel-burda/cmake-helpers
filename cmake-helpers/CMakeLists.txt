@@ -7,6 +7,7 @@ set(OTHER
     ../.travis.yml)
 
 set(SRCS
+    code-coverage.cmake
     get-windows-version.cmake
     gtest.cmake
     messages.cmake
