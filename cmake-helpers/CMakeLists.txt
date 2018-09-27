@@ -1,12 +1,13 @@
 cmake_minimum_required(VERSION 3.8 FATAL_ERROR)
 
-project(cmake-helpers VERSION 0.8.1 LANGUAGES NONE)
+project(cmake-helpers VERSION 0.9.0 LANGUAGES NONE)
 
 set(OTHER
     ../README.md
     ../.travis.yml)
 
 set(SRCS
+    code-coverage.cmake
     get-windows-version.cmake
     gtest.cmake
     messages.cmake
