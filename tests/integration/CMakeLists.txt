@@ -10,6 +10,7 @@ set(SRCS
 if(${RUN_INTEGRATION_TESTS})
     include("run-all-integration-tests.cmake")
 
+    include(${CMAKE_SOURCE_DIR}/cmake-helpers/code-coverage.cmake)
     include(${CMAKE_SOURCE_DIR}/cmake-helpers/messages.cmake)
     include(${CMAKE_SOURCE_DIR}/cmake-helpers/threads.cmake)
 
@@ -21,6 +22,7 @@ if(${RUN_INTEGRATION_TESTS})
     add_dependencies(${PROJECT_NAME} gtest-build)
 
     _gtest_resolve_build_options(${PROJECT_NAME})
+    _coverage_add_build_options(${PROJECT_NAME})
 else()
     add_custom_target(${PROJECT_NAME} ${SRCS})
 endif()
