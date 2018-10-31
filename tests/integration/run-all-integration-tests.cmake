@@ -6,5 +6,4 @@ macro(_run_integration_test test_file)
     message(STATUS "Done")
 endmacro()
 
-_run_integration_test("get-windows-version.test.cmake")
 _run_integration_test("gtest.test.cmake")

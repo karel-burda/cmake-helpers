@@ -1,15 +1,21 @@
-macro(_add_pedantic_warning_level _TARGET)
-    set(CXX_WARNING_FLAGS "")
-    if (MSVC)
-        # "/Wall" Hardly usable on MSVC without excluding stdlib
-        target_compile_options(${_TARGET} PUBLIC /W4)
-    else()
-        target_compile_options(${_TARGET} PUBLIC -Wall -Werror -pedantic -Wno-long-long)
-    endif()
+macro(_warnings_add_pedantic_level _target)
+    target_compile_options(
+        ${_target}
+            PRIVATE
+                $<$<CXX_COMPILER_ID:MSVC>:
+                    /W4>
+
+                $<$<CXX_COMPILER_ID:Clang|GNU>:
+                    -Wall
+                    -Werror
+                    -pedantic
+                    -Wno-long-long>)
 endmacro()
 
-macro(_supress_cxx_compiler_warning _TARGET _WARNING)
+macro(_warnings_supress _target _warning)
+
+    target_compile_options
     if (NOT MSVC)
-        target_compile_options(${_TARGET} PUBLIC -Wno-${_WARNING})
+        target_compile_options(${_TARGET} PRIVATE -Wno-${_WARNING})
     endif()
 endmacro()

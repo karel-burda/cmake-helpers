@@ -3,25 +3,21 @@ cmake_minimum_required(VERSION 3.8 FATAL_ERROR)
 project(integration-tests VERSION 0.9.0 LANGUAGES NONE)
 
 set(SRCS
-    get-windows-version.test.cmake
     gtest.test.cmake
     run-all-integration-tests.cmake)
 
-if(${RUN_INTEGRATION_TESTS})
+if(INTEGRATION-TESTS)
     include("run-all-integration-tests.cmake")
 
     include(${CMAKE_SOURCE_DIR}/cmake-helpers/code-coverage.cmake)
-    include(${CMAKE_SOURCE_DIR}/cmake-helpers/messages.cmake)
-    include(${CMAKE_SOURCE_DIR}/cmake-helpers/threads.cmake)
 
     add_executable(${PROJECT_NAME} ${SRCS})
 
     enable_language(C CXX)
     target_sources(${PROJECT_NAME} PRIVATE gtest.cpp)
 
-    add_dependencies(${PROJECT_NAME} gtest-build)
+    _gtest_bootstrap_and_link(${PROJECT_NAME} "")
 
-    _gtest_resolve_build_options(${PROJECT_NAME})
     _coverage_add_build_options(${PROJECT_NAME})
 else()
     add_custom_target(${PROJECT_NAME} ${SRCS})
