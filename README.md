@@ -22,7 +22,7 @@ include("${CMAKE_SOURCE_DIR}/cmake-helpers/gtest.cmake")
  _gtest_bootstrap_and_link("my-tests" "release-1.8.1" "Release")
 ```
 
-### coverage.cmake
+### [coverage.cmake](cmake-helpers/coverage.cmake)
 ```cmake
 add_executable("my-tests")
 target_sources("my-tests" PRIVATE test.cpp)
@@ -31,7 +31,7 @@ include("${CMAKE_SOURCE_DIR}/cmake-helpers/coverage.cmake")
 _coverage_add_build_options("my-tests")
 ```
 
-### warnings.cmake
+### [warnings.cmake](cmake-helpers/warnings.cmake)
 Only supports GNU complilers (e.g. GCC, Clang).
 ```cmake
 add_executable("my-tests")
@@ -56,6 +56,6 @@ You can of course specify ordinary cmake options like build type (debug, release
 # Tests
 For running integration tests, execute
 
-`cmake . -INTEGRATION-TESTS:BOOL=ON`
+`cmake  -Bbuild -H. -INTEGRATION-TESTS:BOOL=ON`
 
 Tests are being run in the Continuous Integration environment.
