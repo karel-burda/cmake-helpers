@@ -9,6 +9,12 @@ jobs:
        script:
          - set -e
 
-         - cmake -Bbuild -H. -DINTEGRATION_TESTS:BOOL=ON
+         - cmake -Bbuild -H. -DINTEGRATION_TESTS:BOOL=ON -DCMAKE_BUILD_TYPE:STRING=Debug
+         - cmake --build build --config Debug
+
+         - git clean -fdxq
+
+         - cmake -Bbuild -H. -DINTEGRATION_TESTS:BOOL=ON -DCMAKE_BUILD_TYPE:STRING=RelWithDebInfo
+         - cmake --build build --config RelWithDebInfo
 
          - set +e
