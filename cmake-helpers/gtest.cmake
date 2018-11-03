@@ -3,8 +3,6 @@ macro(_gtest_bootstrap_and_link _target _tag _build_type)
     set(_source_dir_base_path "${CMAKE_BINARY_DIR}")
     set(_source_dir_path "${_source_dir_base_path}/${_source_dir_name}")
 
-    #add_custom_target(googletest SOURCES "")
-
     if(NOT EXISTS "${_source_dir_path}")
         find_package(git REQUIRED)
 
