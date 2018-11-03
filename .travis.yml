@@ -13,12 +13,12 @@ jobs:
 
          - git clean -fdxq
 
-         - cmake -Bbuild -H. -DINTEGRATION_TESTS:BOOL=ON -DCMAKE_BUILD_TYPE:STRING=Debug
+         - cmake -Bbuild -H. -DINTEGRATION-TESTS:BOOL=ON -DCMAKE_BUILD_TYPE:STRING=Debug
          - cmake --build build --config Debug
 
          - git clean -fdxq
 
-         - cmake -Bbuild -H. -DINTEGRATION_TESTS:BOOL=ON -DCMAKE_BUILD_TYPE:STRING=Release
+         - cmake -Bbuild -H. -DINTEGRATION-TESTS:BOOL=ON -DCMAKE_BUILD_TYPE:STRING=Release
          - cmake --build build --config Release
 
          - set +e
