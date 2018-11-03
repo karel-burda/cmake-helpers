@@ -17,5 +17,5 @@ endmacro()
 macro(_warnings_suppress _target _warning)
     message(STATUS "Running '_warnings_suppress' with these params: target='${_target}', warning='${_warning}'")
 
-    target_compile_options(${_target} PRIVATE $<$<CXX_COMPILER_ID:GNU>:-Wno-${_WARNING}>)
+    target_compile_options(${_target} PRIVATE $<$<CXX_COMPILER_ID:GNU>:-Wno-${_warning}>)
 endmacro()
