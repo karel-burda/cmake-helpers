@@ -1,5 +1,11 @@
 cmake_minimum_required(VERSION 3.6 FATAL_ERROR)
 
+project(cmake-helpers VERSION 1.0.0 LANGUAGES NONE)
+
+option(INTEGRATION-TESTS "Run integration tests" OFF)
+
 add_subdirectory(cmake-helpers)
-add_subdirectory(tests/integration)
-add_subdirectory(tests/unit)
+
+if (INTEGRATION-TESTS)
+    add_subdirectory(tests/integration)
+endif()
