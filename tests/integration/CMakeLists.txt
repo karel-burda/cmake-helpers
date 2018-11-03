@@ -16,6 +16,10 @@ if(INTEGRATION-TESTS)
 
     enable_language(CXX)
     target_sources(${PROJECT_NAME} PRIVATE integration_test.cpp)
+    set_target_properties(${PROJECT_NAME} PROPERTIES
+                                            CXX_STANDARD 11
+                                            CXX_STANDARD_REQUIRED TRUE
+                                            CMAKE_CXX_EXTENSIONS FALSE)
 
     include(coverage.test.cmake)
     include(gtest.test.cmake)
