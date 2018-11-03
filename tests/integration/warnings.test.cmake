@@ -1,3 +1,3 @@
-include("${BASE_PATH}/warnings.cmake")
+include("${CMAKE_SOURCE_DIR}/cmake-helpers/warnings.cmake")
 
-_supress_cxx_compiler_warning("dummy-cpp-unit" "keyword-macro")
+_warnings_supress(${PROJECT_NAME} "keyword-macro")

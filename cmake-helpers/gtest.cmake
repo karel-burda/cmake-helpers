@@ -1,26 +1,29 @@
-macro(_gtest_bootstrap_and_link _target _tag)
+macro(_gtest_bootstrap_and_link _target _tag _build_type)
     set(_source_dir_name "gtest-src")
-    set(_source_dir_path "${CMAKE_BINARY_DIR}")
+    set(_source_dir_base_path "${CMAKE_BINARY_DIR}")
+    set(_source_dir_path "${_source_dir_base_path}/${_source_dir_name}")
 
-    add_custom_target(gtest SOURCES "")
+    #add_custom_target(googletest SOURCES "")
 
-    if(NOT EXISTS "${_source_dir}")
+    if(NOT EXISTS "${_source_dir_path}")
         find_package(git REQUIRED)
 
-        execute_process(COMMAND "${GIT_EXECUTABLE} clone -b ${_tag} --depth 1 --single-branch -- https://github.com/google/googletest.git ${_source_dir_name}"
-                        WORKING_DIRECTORY ${_source_dir_path}
+        execute_process(COMMAND ${GIT_EXECUTABLE} clone -b ${_tag} --depth 1 --single-branch -- https://github.com/google/googletest.git ${_source_dir_name}
+                        WORKING_DIRECTORY ${_source_dir_base_path}
                         TIMEOUT 300)
     endif()
 
-    execute_process(COMMAND ${CMAKE_COMMAND} -DBUILD_GMOCK:BOOL=OFF -DBUILD_GTEST:BOOL=ON -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE} .
-                    WORKING_DIRECTORY "${_source_dir}/${_source_dir_name}")
-    execute_process(COMMAND ${CMAKE_COMMAND} --build . --config ${_GTEST_BUILD_VARIANT}
-                    WORKING_DIRECTORY "${_source_dir}/${_source_dir_name}")
+    execute_process(COMMAND ${CMAKE_COMMAND} -DBUILD_GMOCK:BOOL=OFF -DCMAKE_BUILD_TYPE=${_build_type} .
+                    WORKING_DIRECTORY "${_source_dir_path}")
+    execute_process(COMMAND ${CMAKE_COMMAND} --build . --config ${_build_type}
+                    WORKING_DIRECTORY "${_source_dir_path}")
 
-    #set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+    set(GTEST_ROOT "${_source_dir_path}/googletest")
+    if (MSVC)
+        file(GLOB _gtest_binaries "${_source_dir_path}/googletest/${_build_type}/*.lib")
+    endif()
 
-    #set(GTEST_ROOT ${_source_dir})
     find_package(GTest REQUIRED)
-
-    add_dependencies(${_target} gtest)
+    
+    target_link_libraries(${_target} GTest::GTest GTest::Main)
 endmacro()
