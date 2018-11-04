@@ -15,10 +15,12 @@ jobs:
 
          - cmake -Bbuild -H. -DINTEGRATION-TESTS:BOOL=ON -DCMAKE_BUILD_TYPE:STRING=Debug
          - cmake --build build --config Debug
+         - build/tests/integration/integration-tests
 
          - git clean -fdxq
 
          - cmake -Bbuild -H. -DINTEGRATION-TESTS:BOOL=ON -DCMAKE_BUILD_TYPE:STRING=Release
          - cmake --build build --config Release
+         - build/tests/integration/integration-tests
 
          - set +e
