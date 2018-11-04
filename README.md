@@ -18,7 +18,7 @@ For full examples, see implementation of [tests](tests/integration).
 add_executable("my-tests")
 target_sources("my-tests" PRIVATE test.cpp)
 
-include("${CMAKE_SOURCE_DIR}/cmake-helpers/gtest.cmake")
+include(${CMAKE_SOURCE_DIR}/cmake-helpers/gtest.cmake)
  _gtest_bootstrap_and_link("my-tests" "release-1.8.1" "Release")
 ```
 
@@ -27,7 +27,7 @@ include("${CMAKE_SOURCE_DIR}/cmake-helpers/gtest.cmake")
 add_executable("my-tests")
 target_sources("my-tests" PRIVATE test.cpp)
 
-include("${CMAKE_SOURCE_DIR}/cmake-helpers/coverage.cmake")
+include(${CMAKE_SOURCE_DIR}/cmake-helpers/coverage.cmake)
 _coverage_add_build_options("my-tests")
 ```
 
@@ -37,7 +37,7 @@ Only supports GNU compilers (e.g. GCC, Clang).
 add_executable("my-tests")
 target_sources("my-tests" PRIVATE test.cpp)
 
-include("${CMAKE_SOURCE_DIR}/cmake-helpers/warnings.cmake")
+include(${CMAKE_SOURCE_DIR}/cmake-helpers/warnings.cmake)
 _warnings_add_pedantic_level(${PROJECT_NAME})
 _warnings_suppress(${PROJECT_NAME} "some-specific-warning")
 ```
