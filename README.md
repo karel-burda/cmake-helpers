@@ -32,7 +32,6 @@ _coverage_add_build_options("my-tests")
 ```
 
 ### [warnings.cmake](cmake-helpers/warnings.cmake)
-Only supports GNU compilers (e.g. GCC, Clang).
 ```cmake
 add_executable("my-tests")
 target_sources("my-tests" PRIVATE test.cpp)

@@ -4,18 +4,15 @@ macro(_coverage_add_build_options _target)
     target_compile_options(
         ${_target}
             PRIVATE
-                $<$<CXX_COMPILER_ID:GNU>:
+                $<$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>>:
                     -fprofile-arcs
                     -ftest-coverage>
 
-                $<$<CXX_COMPILER_ID:Clang>:
-                    -fprofile-arcs
-                    -ftest-coverage
+                $<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>>:
                     -fcoverage-mapping
                     -fprofile-instr-generate>)
 
-    # Cannot use expression generator in set_target_properties()
-    if (CMAKE_CXX_COMPILER_ID MATCHES "GNU")
+    if (CMAKE_CXX_COMPILER_ID MATCHES "GNU" OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
         set_target_properties(
             ${_target}
                 PROPERTIES

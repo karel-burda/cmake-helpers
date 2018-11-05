@@ -7,15 +7,18 @@ macro(_warnings_add_pedantic_level _target)
                 $<$<CXX_COMPILER_ID:MSVC>:
                     /W4>
 
-                $<$<CXX_COMPILER_ID:GNU>:
+                $<$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>>:
                     -Wall
-                    -Werror
                     -pedantic
                     -Wno-long-long>)
 endmacro()
 
 macro(_warnings_suppress _target _warning)
     message(STATUS "Running '_warnings_suppress' with these params: target='${_target}', warning='${_warning}'")
+
+    if (NOT CMAKE_CXX_COMPILER_ID MATCHES "GNU" AND NOT CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+        message(WARNING "Only GNU and Clang compilers are supported in this macro")
+    endif()
 
     target_compile_options(${_target} PRIVATE $<$<CXX_COMPILER_ID:GNU>:-Wno-${_warning}>)
 endmacro()
