@@ -53,8 +53,12 @@ I personally prefer to specify a separate build directory explicitly:
 You can of course specify ordinary cmake options like build type (debug, release with debug info, ...), used generator, etc.
 
 # Tests
-For running integration tests, execute
+For running integration tests, execute (for example) following:
 
-`cmake  -Bbuild -H. -INTEGRATION-TESTS:BOOL=ON`
+`cmake -Bbuild -H. -DINTEGRATION-TESTS:BOOL=ON -DCMAKE_BUILD_TYPE:STRING=Release`
+
+`cmake --build build --config Release`
+
+Where `CMAKE_BUILD_TYPE` and `config` are optional.
 
 Tests are being run in the Continuous Integration environment.
