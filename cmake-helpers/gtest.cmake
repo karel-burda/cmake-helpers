@@ -14,7 +14,7 @@ macro(_gtest_bootstrap_and_link _target _branch_or_tag _build_type)
     set(_source_dir_path ${_source_dir_base_path}/${_source_dir_name})
     set(_cmake_generate_args -DBUILD_GMOCK:BOOL=OFF -DCMAKE_BUILD_TYPE=${_build_type_resolved})
     if (MSVC)
-        list(APPEND _cmake_generate_args "-Dgtest_force_shared_crt:BOOL=ON")
+        list(APPEND _cmake_generate_args -Dgtest_force_shared_crt:BOOL=ON)
     endif()
     set(_cmake_build_args --build . --config ${_build_type_resolved})
 
