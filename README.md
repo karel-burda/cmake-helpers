@@ -14,6 +14,7 @@ All cmake functions are located in the [cmake-helpers](cmake-helpers).
 For full examples, see implementation of [tests](tests/integration).
 
 ### [gtest.cmake](cmake-helpers/gtest.cmake)
+Test implemented at: [gtest.test.cmake](tests/integration/gtest.test.cmake)
 ```cmake
 add_executable("my-tests")
 target_sources("my-tests" PRIVATE test.cpp)
@@ -23,6 +24,7 @@ include(${CMAKE_SOURCE_DIR}/cmake-helpers/gtest.cmake)
 ```
 
 ### [coverage.cmake](cmake-helpers/coverage.cmake)
+Test implemented at: [coverage.test.cmake](tests/integration/coverage.test.cmake)
 ```cmake
 add_executable("my-tests")
 target_sources("my-tests" PRIVATE test.cpp)
@@ -32,9 +34,10 @@ _coverage_add_build_options("my-tests")
 ```
 
 ### [warnings.cmake](cmake-helpers/warnings.cmake)
+Test implemented at: [warnings.test.cmake](tests/integration/warnings.test.cmake)
 ```cmake
 add_executable("my-project")
-target_sources("my-project" PRIVATE test.cpp)
+target_sources("my-project" PRIVATE project.cpp)
 
 include(${CMAKE_SOURCE_DIR}/cmake-helpers/warnings.cmake)
 _warnings_add_pedantic_level("my-project")
