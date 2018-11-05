@@ -7,9 +7,9 @@ if (NOT CMAKE_BUILD_TYPE)
 endif()
 
 set(SRCS
-    coverage.test.cmake
-    gtest.test.cmake
-    warnings.test.cmake)
+    coverage_test.cmake
+    gtest_test.cmake
+    warnings_test.cmake)
 
 if(INTEGRATION-TESTS)
     add_executable(${PROJECT_NAME} ${SRCS})
@@ -21,9 +21,9 @@ if(INTEGRATION-TESTS)
                                             CXX_STANDARD_REQUIRED TRUE
                                             CMAKE_CXX_EXTENSIONS FALSE)
 
-    include(coverage.test.cmake)
-    include(gtest.test.cmake)
-    include(warnings.test.cmake)
+    include(coverage_test.cmake)
+    include(gtest_test.cmake)
+    include(warnings_test.cmake)
 else()
     add_custom_target(${PROJECT_NAME} ${SRCS})
 endif()
