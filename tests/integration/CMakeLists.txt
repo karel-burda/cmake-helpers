@@ -1,28 +1,29 @@
 cmake_minimum_required(VERSION 3.8 FATAL_ERROR)
 
-project(integration-tests VERSION 0.9.0 LANGUAGES NONE)
+project(integration-tests LANGUAGES NONE)
+
+if (NOT CMAKE_BUILD_TYPE)
+    set(CMAKE_BUILD_TYPE Debug)
+endif()
 
 set(SRCS
-    get-windows-version.test.cmake
-    gtest.test.cmake
-    run-all-integration-tests.cmake)
+    coverage_test.cmake
+    gtest_test.cmake
+    warnings_test.cmake)
 
-if(${RUN_INTEGRATION_TESTS})
-    include("run-all-integration-tests.cmake")
-
-    include(${CMAKE_SOURCE_DIR}/cmake-helpers/code-coverage.cmake)
-    include(${CMAKE_SOURCE_DIR}/cmake-helpers/messages.cmake)
-    include(${CMAKE_SOURCE_DIR}/cmake-helpers/threads.cmake)
-
+if(INTEGRATION-TESTS)
     add_executable(${PROJECT_NAME} ${SRCS})
 
-    enable_language(C CXX)
-    target_sources(${PROJECT_NAME} PRIVATE gtest.cpp)
+    enable_language(CXX)
+    target_sources(${PROJECT_NAME} PRIVATE integration_test.cpp)
+    set_target_properties(${PROJECT_NAME} PROPERTIES
+                                            CXX_STANDARD 11
+                                            CXX_STANDARD_REQUIRED TRUE
+                                            CMAKE_CXX_EXTENSIONS FALSE)
 
-    add_dependencies(${PROJECT_NAME} gtest-build)
-
-    _gtest_resolve_build_options(${PROJECT_NAME})
-    _coverage_add_build_options(${PROJECT_NAME})
+    include(coverage_test.cmake)
+    include(gtest_test.cmake)
+    include(warnings_test.cmake)
 else()
     add_custom_target(${PROJECT_NAME} ${SRCS})
 endif()

@@ -1,19 +1,14 @@
 cmake_minimum_required(VERSION 3.8 FATAL_ERROR)
 
-project(cmake-helpers VERSION 0.9.0 LANGUAGES NONE)
+project(cmake-helpers LANGUAGES NONE)
 
 set(OTHER
     ../README.md
     ../.travis.yml)
 
 set(SRCS
-    code-coverage.cmake
-    get-windows-version.cmake
+    coverage.cmake
     gtest.cmake
-    messages.cmake
-    source-group-by-folder.cmake
-    standard-settings.cmake
-    threads.cmake
     warnings.cmake)
 
 add_custom_target(${PROJECT_NAME} SOURCES ${SRCS} ${OTHER})

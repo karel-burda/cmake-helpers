@@ -1,23 +1,26 @@
 stages:
-  - generation, tests
-
-notifications:
-  email:
-    on_success: never
-    on_failure: always
-    recipients:
-      - karelburda89@gmail.com
+  - tests
 
 jobs:
   include:
-     - stage: generation, tests
+     - stage: tests
        dist: trusty
        os: linux
        script:
          - set -e
 
          - cmake -Bbuild -H.
-         - cmake -Bbuild -H. -DRUN_UNIT_TESTS:BOOL=ON -DRUN_INTEGRATION_TESTS:BOOL=ON
-         - cmake --build build --target integration-tests --config Release
+
+         - git clean -fdxq
+
+         - cmake -Bbuild -H. -DINTEGRATION-TESTS:BOOL=ON -DCMAKE_BUILD_TYPE:STRING=Debug
+         - cmake --build build --config Debug
+         - build/tests/integration/integration-tests
+
+         - git clean -fdxq
+
+         - cmake -Bbuild -H. -DINTEGRATION-TESTS:BOOL=ON -DCMAKE_BUILD_TYPE:STRING=Release
+         - cmake --build build --config Release
+         - build/tests/integration/integration-tests
 
          - set +e

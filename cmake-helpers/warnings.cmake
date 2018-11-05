@@ -1,15 +1,24 @@
-macro(_add_pedantic_warning_level _TARGET)
-    set(CXX_WARNING_FLAGS "")
-    if (MSVC)
-        # "/Wall" Hardly usable on MSVC without excluding stdlib
-        target_compile_options(${_TARGET} PUBLIC /W4)
-    else()
-        target_compile_options(${_TARGET} PUBLIC -Wall -Werror -pedantic -Wno-long-long)
-    endif()
+macro(_warnings_add_pedantic_level _target)
+    message(STATUS "Running '_warnings_add_pedantic_level' with these params: target='${_target}'")
+
+    target_compile_options(
+        ${_target}
+            PRIVATE
+                $<$<CXX_COMPILER_ID:MSVC>:
+                    /W4>
+
+                $<$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>>:
+                    -Wall
+                    -pedantic
+                    -Wno-long-long>)
 endmacro()
 
-macro(_supress_cxx_compiler_warning _TARGET _WARNING)
-    if (NOT MSVC)
-        target_compile_options(${_TARGET} PUBLIC -Wno-${_WARNING})
+macro(_warnings_suppress _target _warning)
+    message(STATUS "Running '_warnings_suppress' with these params: target='${_target}', warning='${_warning}'")
+
+    if (NOT CMAKE_CXX_COMPILER_ID MATCHES "GNU" AND NOT CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+        message(WARNING "Only GNU and Clang compilers are supported in this macro")
     endif()
+
+    target_compile_options(${_target} PRIVATE $<$<CXX_COMPILER_ID:GNU>:-Wno-${_warning}>)
 endmacro()
