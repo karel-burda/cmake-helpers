@@ -33,12 +33,12 @@ _coverage_add_build_options("my-tests")
 
 ### [warnings.cmake](cmake-helpers/warnings.cmake)
 ```cmake
-add_executable("my-tests")
-target_sources("my-tests" PRIVATE test.cpp)
+add_executable("my-project")
+target_sources("my-project" PRIVATE test.cpp)
 
 include(${CMAKE_SOURCE_DIR}/cmake-helpers/warnings.cmake)
-_warnings_add_pedantic_level(${PROJECT_NAME})
-_warnings_suppress(${PROJECT_NAME} "some-specific-warning")
+_warnings_add_pedantic_level("my-project")
+_warnings_suppress("my-project" "some-specific-warning")
 ```
 
 # Build Process
