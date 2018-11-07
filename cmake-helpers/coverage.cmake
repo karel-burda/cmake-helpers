@@ -6,11 +6,7 @@ macro(_coverage_add_build_options _target)
             PRIVATE
                 $<$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>>:
                     -fprofile-arcs
-                    -ftest-coverage>
-
-                $<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>>:
-                    -fcoverage-mapping
-                    -fprofile-instr-generate>)
+                    -ftest-coverage>)
 
     if (CMAKE_CXX_COMPILER_ID MATCHES "GNU" OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
         set_target_properties(

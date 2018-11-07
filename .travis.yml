@@ -1,26 +1,17 @@
 stages:
-  - tests
+  - tests (osx, debug)
+  - tests (linux, release)
 
 jobs:
   include:
-     - stage: tests
+     - stage: (linux, release)
        dist: trusty
        os: linux
        script:
          - set -e
 
-         - cmake -Bbuild -H.
-
-         - git clean -fdxq
-
-         - cmake -Bbuild -H. -DINTEGRATION-TESTS:BOOL=ON -DCMAKE_BUILD_TYPE:STRING=Debug
-         - cmake --build build --config Debug
-         - build/tests/integration/integration-tests
-
-         - git clean -fdxq
-
-         - cmake -Bbuild -H. -DINTEGRATION-TESTS:BOOL=ON -DCMAKE_BUILD_TYPE:STRING=Release
-         - cmake --build build --config Release
+         - cmake -Bbuild/tests/integration -Htests/integration -G "Unix Makefiles" -DINTEGRATION-TESTS:BOOL=ON -DCMAKE_BUILD_TYPE:STRING=RelWithDebInfo
+         - cmake --build build/tests/integration --config RelWithDebInfo
          - build/tests/integration/integration-tests
 
          - set +e
