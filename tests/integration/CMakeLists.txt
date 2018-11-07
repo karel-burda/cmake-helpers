@@ -34,13 +34,13 @@ if(INTEGRATION-TESTS)
         if (CMAKE_GENERATOR MATCHES "Unix Makefiles")
             add_custom_command(TARGET ${PROJECT_NAME}
                                PRE_BUILD
-                               COMMAND sh ${CMAKE_CURRENT_SOURCE_DIR}/check_flags_in_makefile.sh ${CMAKE_CURRENT_BINARY_DIR}
+                               COMMAND ./${CMAKE_CURRENT_SOURCE_DIR}/check_flags_in_makefile.sh ${CMAKE_CURRENT_BINARY_DIR}
                                COMMENT "Inspecting generated makefile")
         endif()
 
         add_custom_command(TARGET ${PROJECT_NAME}
                 PRE_BUILD
-                COMMAND sh ${CMAKE_CURRENT_SOURCE_DIR}/check_coverage_files.sh
+                COMMAND ./${CMAKE_CURRENT_SOURCE_DIR}/check_coverage_files.sh
                 COMMENT "Inspecting coverage files")
     endif()
 
