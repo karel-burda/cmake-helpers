@@ -17,6 +17,6 @@ jobs:
          - build/tests/integration/integration-tests
          - cmake --build build/tests/integration --config RelWithDebInfo --target check-coverage-files
 
-         - coveralls -e build/tests --gcov-options '\-lp'
+         - coveralls --gcov-options '\-lp'
 
          - set +e
