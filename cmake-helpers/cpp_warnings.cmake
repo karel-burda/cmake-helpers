@@ -1,5 +1,5 @@
-macro(_warnings_add_pedantic_level _target)
-    message(STATUS "Running '_warnings_add_pedantic_level' with these params: target='${_target}'")
+macro(burda_cmake_helpers_cpp_warnings_add_pedantic_level _target)
+    message(STATUS "Running 'burda_cmake_helpers_cpp_warnings_add_pedantic_level' with these params: target='${_target}'")
 
     target_compile_options(
         ${_target}
@@ -13,8 +13,8 @@ macro(_warnings_add_pedantic_level _target)
                     -Wno-long-long>)
 endmacro()
 
-macro(_warnings_suppress _target _warning)
-    message(STATUS "Running '_warnings_suppress' with these params: target='${_target}', warning='${_warning}'")
+macro(burda_cmake_helpers_warnings_suppress _target _warning)
+    message(STATUS "Running 'burda_cmake_helpers_warnings_suppress' with these params: target='${_target}', warning='${_warning}'")
 
     if (NOT CMAKE_CXX_COMPILER_ID MATCHES "GNU" AND NOT CMAKE_CXX_COMPILER_ID MATCHES "Clang")
         message(WARNING "Only GNU and Clang compilers are supported in this macro")

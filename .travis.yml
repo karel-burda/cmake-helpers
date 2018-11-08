@@ -13,5 +13,6 @@ jobs:
          - cmake -Bbuild/tests/integration -Htests/integration -G "Unix Makefiles" -DINTEGRATION-TESTS:BOOL=ON -DCMAKE_BUILD_TYPE:STRING=RelWithDebInfo
          - cmake --build build/tests/integration --config RelWithDebInfo
          - build/tests/integration/integration-tests
+         - cmake --build build/tests/integration --config RelWithDebInfo --target check-coverage-files
 
          - set +e

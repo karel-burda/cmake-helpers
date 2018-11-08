@@ -19,7 +19,7 @@ Test implemented at: [gtest_test.cmake](tests/integration/gtest_test.cmake)
 add_executable("my-tests")
 target_sources("my-tests" PRIVATE test.cpp)
 
-include(${CMAKE_SOURCE_DIR}/cmake-helpers/gtest.cmake)
+include(cpp_gtest.cmake)
  _gtest_bootstrap_and_link("my-tests" "release-1.8.1" "Release")
 ```
 
@@ -29,7 +29,7 @@ Test implemented at: [coverage_test.cmake](tests/integration/coverage_test.cmake
 add_executable("my-tests")
 target_sources("my-tests" PRIVATE test.cpp)
 
-include(${CMAKE_SOURCE_DIR}/cmake-helpers/coverage.cmake)
+include(cpp_coverage.cmake)
 _coverage_add_build_options("my-tests")
 ```
 
@@ -39,7 +39,7 @@ Test implemented at: [warnings_test.cmake](tests/integration/warnings_test.cmake
 add_executable("my-project")
 target_sources("my-project" PRIVATE project.cpp)
 
-include(${CMAKE_SOURCE_DIR}/cmake-helpers/warnings.cmake)
+include(cpp_warnings.cmake)
 _warnings_add_pedantic_level("my-project")
 _warnings_suppress("my-project" "some-specific-warning")
 ```
@@ -56,12 +56,20 @@ I personally prefer to specify a separate build directory explicitly:
 You can of course specify ordinary cmake options like build type (debug, release with debug info, ...), used generator, etc.
 
 # Tests
-For running integration tests, execute (for example) following:
+For generation of integration tests (that is actually a full C++ project), execute (with example parameters) following:
 
-`cmake -Bbuild -H. -DINTEGRATION-TESTS:BOOL=ON -DCMAKE_BUILD_TYPE:STRING=Release`
+```cmake
+cmake -Bbuild/tests/integration -Htests/integration -DCMAKE_BUILD_TYPE:STRING=RelWithDebInfo
 
-`cmake --build build --config Release`
+# On Unixes, this also checks the generated makefile for correct flag when used with -G "Unix Makefiles"
+cmake --build build/tests/integration --config RelWithDebInfo
 
-Where `CMAKE_BUILD_TYPE` and `config` are optional.
+# On Unixes you can also run target "check-coverage-files" after the binary was executed
+# to inspect whether coverage files had been generated
+./build/tests/integration
+cmake --build build --config RelWithDebInfo --target check-coverage-files
+```
 
-Tests are being run in the Continuous Integration environment.
+Where `CMAKE_BUILD_TYPE` and `config` parameters are optional.
+
+Tests are being run in the Continuous Integration environment, see [.travis.yml](.travis.yml).
