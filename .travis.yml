@@ -7,6 +7,8 @@ jobs:
      - stage: (linux, release)
        dist: trusty
        os: linux
+       before_install:
+       - pip install --user cpp-coveralls
        script:
          - set -e
 
@@ -14,5 +16,7 @@ jobs:
          - cmake --build build/tests/integration --config RelWithDebInfo
          - build/tests/integration/integration-tests
          - cmake --build build/tests/integration --config RelWithDebInfo --target check-coverage-files
+
+         - coveralls -e ./build/gtest-src --gcov-options '\-lp'
 
          - set +e
