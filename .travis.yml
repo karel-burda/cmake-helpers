@@ -1,13 +1,15 @@
 stages:
-  - tests (linux, debug, gcc, coverage)
-  - tests (osx, release with debug info, clang)
+  - tests -- linux, debug, gcc, coverage
+  - tests -- osx, release with debug info, clang
 
 jobs:
   include:
-    - stage: tests (linux, debug, gcc, coverage)
+    - stage: tests -- linux, debug, gcc, coverage
       dist: trusty
       os: linux
+      language: cpp
       env: BUILD_TYPE="Debug"
+      compiler: gcc
       before_install:
         - pip install --user cpp-coveralls
       script:
@@ -18,12 +20,13 @@ jobs:
         - build/tests/integration/integration-tests
         - cmake --build build/tests/integration --config $BUILD_TYPE --target check-coverage-files
 
-        - coveralls --gcov-options '\-lp'
+        - coveralls -e build --gcov-options '\-lp'
 
         - set +e
 
-    - stage: (osx, release with debug info, clang)
+    - stage: tests -- osx, release with debug info, clang
       os: linux
+      language: cpp
       env: BUILD_TYPE="RelWithDebInfo"
       compiler: clang
       script:
