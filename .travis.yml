@@ -25,6 +25,7 @@ jobs:
         - set +e
 
       after_success:
+        - for filename in `find . | egrep '\.(hpp|cpp)'`; do gcov -n -o . $filename > /dev/null;done
         - bash <(curl -s https://codecov.io/bash)
 
     - stage: tests -- osx, release with debug info, clang
