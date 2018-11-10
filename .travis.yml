@@ -1,22 +1,36 @@
 stages:
-  - tests (osx, debug)
-  - tests (linux, release)
+  - tests (linux, debug, gcc, coverage)
+  - tests (osx, release with debug info, clang)
 
 jobs:
   include:
-     - stage: (linux, release)
-       dist: trusty
+    - stage: tests (linux, debug, gcc, coverage)
+      dist: trusty
+      os: linux
+      env: BUILD_TYPE="Debug"
+      before_install:
+        - pip install --user cpp-coveralls
+      script:
+        - set -e
+
+        - cmake -Bbuild/tests/integration -Htests/integration -G "Unix Makefiles" -DCMAKE_BUILD_TYPE:STRING=$BUILD_TYPE
+        - cmake --build build/tests/integration --config $BUILD_TYPE
+        - build/tests/integration/integration-tests
+        - cmake --build build/tests/integration --config $BUILD_TYPE --target check-coverage-files
+
+        - coveralls --gcov-options '\-lp'
+
+        - set +e
+
+     - stage: (osx, release with debug info, clang)
        os: linux
-       before_install:
-       - pip install --user cpp-coveralls
+       env: BUILD_TYPE="RelWithDebInfo"
+       compiler: clang
        script:
          - set -e
 
-         - cmake -Bbuild/tests/integration -Htests/integration -G "Unix Makefiles" -DCMAKE_BUILD_TYPE:STRING=RelWithDebInfo
-         - cmake --build build/tests/integration --config RelWithDebInfo
+         - cmake -Bbuild/tests/integration -Htests/integration -G "Unix Makefiles" -DCMAKE_BUILD_TYPE:STRING=$BUILD_TYPE
+         - cmake --build build/tests/integration --config $BUILD_TYPE
          - build/tests/integration/integration-tests
-         - cmake --build build/tests/integration --config RelWithDebInfo --target check-coverage-files
-
-         - coveralls -e build/tests/integration/gtest-src --gcov-options '\-lp'
 
          - set +e
