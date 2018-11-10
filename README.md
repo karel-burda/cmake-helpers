@@ -2,6 +2,7 @@
 [![License](https://img.shields.io/badge/license-MIT_License-green.svg?style=flat)](LICENSE)
 [![Build Status](https://travis-ci.org/karel-burda/cmake-helpers.svg?branch=master)](https://travis-ci.org/karel-burda/cmake-helpers)
 [![Coverage Status](https://coveralls.io/repos/github/karel-burda/cmake-helpers/badge.svg?branch=develop)](https://coveralls.io/github/karel-burda/cmake-helpers?branch=develop)
+[![Codecov Status](https://codecov.io/gh/karel-burda/cmake-helpers/branch/develop/graph/badge.svg)](https://codecov.io/gh/karel-burda/cmake-helpers/branch/develop)
 
 # Introduction
 `cmake-helpers` features tiny cmake-related functions and macros I'm using across my projects based on CMake.
