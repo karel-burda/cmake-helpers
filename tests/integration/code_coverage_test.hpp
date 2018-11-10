@@ -11,6 +11,10 @@ class code_coverage_test {
             foo = true;
         }
 
+        void unused() {
+            foo = false;
+        }
+
     private:
         bool foo = false;
 };
