@@ -7,16 +7,15 @@ jobs:
     - stage: tests (linux, debug, gcc, coverage)
       dist: trusty
       os: linux
-      env: BUILD_TYPE="Debug"
       before_install:
         - pip install --user cpp-coveralls
       script:
         - set -e
 
-        - cmake -Bbuild/tests/integration -Htests/integration -G "Unix Makefiles" -DCMAKE_BUILD_TYPE:STRING=$BUILD_TYPE
-        - cmake --build build/tests/integration --config $BUILD_TYPE
+        - cmake -Bbuild/tests/integration -Htests/integration -G "Unix Makefiles" -DCMAKE_BUILD_TYPE:STRING=Debug
+        - cmake --build build/tests/integration --config Debug
         - build/tests/integration/integration-tests
-        - cmake --build build/tests/integration --config $BUILD_TYPE --target check-coverage-files
+        - cmake --build build/tests/integration --config Debug --target check-coverage-files
 
         - coveralls --gcov-options '\-lp'
 
@@ -24,13 +23,12 @@ jobs:
 
      - stage: (osx, release with debug info, clang)
        os: linux
-       env: BUILD_TYPE="RelWithDebInfo"
        compiler: clang
        script:
          - set -e
 
-         - cmake -Bbuild/tests/integration -Htests/integration -G "Unix Makefiles" -DCMAKE_BUILD_TYPE:STRING=$BUILD_TYPE
-         - cmake --build build/tests/integration --config $BUILD_TYPE
+         - cmake -Bbuild/tests/integration -Htests/integration -G "Unix Makefiles" -DCMAKE_BUILD_TYPE:STRING=RelWithDebInfo
+         - cmake --build build/tests/integration --config RelWithDebInfo
          - build/tests/integration/integration-tests
 
          - set +e
