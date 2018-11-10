@@ -20,7 +20,7 @@ jobs:
         - build/tests/integration/integration-tests
         - cmake --build build/tests/integration --config $BUILD_TYPE --target check-coverage-files
 
-        - coveralls -e build/tests/integration/gtest-src -e build/tests/integration/CMakeFiles --gcov-options '\-lp'
+        - coveralls -e build/tests/integration/gtest-src -E "*CMakeFiles*" --gcov-options '\-lp'
 
         - set +e
 
