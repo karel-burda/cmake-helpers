@@ -1,26 +1,42 @@
 stages:
-  - tests
+  - tests -- linux, debug, g++, coverage
+  - tests -- osx, release with debug info, clang
+
+git:
+    depth: 1
 
 jobs:
   include:
-     - stage: tests
-       dist: trusty
-       os: linux
-       script:
-         - set -e
+    - stage: tests -- linux, debug, gcc, coverage
+      dist: trusty
+      os: linux
+      language: cpp
+      env: BUILD_TYPE="Debug"
+      compiler: g++
+      before_install:
+        - pip install --user cpp-coveralls
+      script:
+        - set -e
 
-         - cmake -Bbuild -H.
+        - cmake -Bbuild/tests/integration -Htests/integration -G "Unix Makefiles" -DCMAKE_BUILD_TYPE:STRING=$BUILD_TYPE
+        - cmake --build build/tests/integration --config $BUILD_TYPE
+        - build/tests/integration/integration-tests
+        - cmake --build build/tests/integration --config $BUILD_TYPE --target check-coverage-files
 
-         - git clean -fdxq
+        - bash <(curl -s https://codecov.io/bash)
 
-         - cmake -Bbuild -H. -DINTEGRATION-TESTS:BOOL=ON -DCMAKE_BUILD_TYPE:STRING=Debug
-         - cmake --build build --config Debug
-         - build/tests/integration/integration-tests
+        - set +e
 
-         - git clean -fdxq
+    - stage: tests -- osx, release with debug info, clang
+      os: linux
+      language: cpp
+      env: BUILD_TYPE="RelWithDebInfo"
+      compiler: clang
+      script:
+        - set -e
 
-         - cmake -Bbuild -H. -DINTEGRATION-TESTS:BOOL=ON -DCMAKE_BUILD_TYPE:STRING=Release
-         - cmake --build build --config Release
-         - build/tests/integration/integration-tests
+        - cmake -Bbuild/tests/integration -Htests/integration -G "Unix Makefiles" -DCMAKE_BUILD_TYPE:STRING=$BUILD_TYPE
+        - cmake --build build/tests/integration --config $BUILD_TYPE
+        - build/tests/integration/integration-tests
 
-         - set +e
+        - set +e
