@@ -24,11 +24,6 @@ jobs:
         - cmake --build build/tests/integration --config $BUILD_TYPE --target check-coverage-files
 
         - bash <(curl -s https://codecov.io/bash)
-        - coveralls --gcov-options '\-lp'
-                    -e build/tests/integration/gtest-src
-                    -e $(find build/tests/integration/CMakeFiles -name "CMakeCXXCompilerId.c*")
-                    -e $(find build/tests/integration/CMakeFiles -name "CheckFunctionExists.c*")
-                    -e $(find build/tests/integration/CMakeFiles -name "feature_tests.c*")
 
         - set +e
 

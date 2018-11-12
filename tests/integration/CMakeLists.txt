@@ -12,15 +12,15 @@ add_executable(${PROJECT_NAME} "")
 
 target_sources(${PROJECT_NAME}
                    PRIVATE
-                       cpp_coverage_test.cmake
-                       cpp_gtest_test.cmake
-                       cpp_warnings_test.cmake
+                       ${CMAKE_CURRENT_SOURCE_DIR}/cpp_coverage_test.cmake
+                       ${CMAKE_CURRENT_SOURCE_DIR}/cpp_gtest_test.cmake
+                       ${CMAKE_CURRENT_SOURCE_DIR}/cpp_warnings_test.cmake
 
-                       check_flags_in_makefile.sh
-                       check_coverage_files.sh
+                       ${CMAKE_CURRENT_SOURCE_DIR}/check_flags_in_makefile.sh
+                       ${CMAKE_CURRENT_SOURCE_DIR}/check_coverage_files.sh
 
-                       code_coverage_test.hpp
-                       integration_test.cpp)
+                       ${CMAKE_CURRENT_SOURCE_DIR}/code_coverage_test.hpp
+                       ${CMAKE_CURRENT_SOURCE_DIR}/integration_test.cpp)
 
 target_compile_features(${PROJECT_NAME}
                             PRIVATE
