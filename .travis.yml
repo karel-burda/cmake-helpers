@@ -20,13 +20,11 @@ jobs:
         - build/tests/integration/integration-tests
         - cmake --build build/tests/integration --config $BUILD_TYPE --target check-coverage-files
 
-        - coveralls -e build/tests/integration/gtest-src --gcov-options '\-lp'
+        - bash <(curl -s https://codecov.io/bash)
+        - coveralls -e build/tests/integration/gtest-src -e --gcov-options '\-lp'
+                    -e find build/tests/integration/CMakeFiles -name "CMakeCXXCompilerId.cpp"
 
         - set +e
-
-      after_success:
-        #- for filename in `find . | egrep '\.(hpp|cpp)'`; do gcov -n -o . $filename > /dev/null;done
-        - bash <(curl -s https://codecov.io/bash)
 
     - stage: tests -- osx, release with debug info, clang
       os: linux
