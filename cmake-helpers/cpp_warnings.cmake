@@ -1,3 +1,4 @@
+# Adds pedantic compiler warnings settings to given target
 macro(burda_cmake_helpers_cpp_warnings_add_pedantic_level _target _visibility)
     message(STATUS "Running 'burda_cmake_helpers_cpp_warnings_add_pedantic_level' with these params: target='${_target}'")
 
@@ -13,6 +14,7 @@ macro(burda_cmake_helpers_cpp_warnings_add_pedantic_level _target _visibility)
                     -Wno-long-long>)
 endmacro()
 
+# Supresses given compiler warning (e.g. when given "keyword-macro" it adds "-Wno-keyword-macro") to desired target
 macro(burda_cmake_helpers_cpp_warnings_suppress _target _warning _visibility)
     message(STATUS "Running 'burda_cmake_helpers_warnings_suppress' with these params: target='${_target}', warning='${_warning}'")
 

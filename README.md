@@ -22,7 +22,7 @@ add_executable("my-tests")
 target_sources("my-tests" PRIVATE test.cpp)
 
 include(cpp_gtest.cmake)
- _gtest_bootstrap_and_link("my-tests" "release-1.8.1" "Release")
+ burda_cmake_helpers_cpp_gtest_bootstrap_and_link("my-tests" "release-1.8.1" "Release")
 ```
 
 ### [coverage.cmake](cmake-helpers/coverage.cmake)
@@ -32,7 +32,7 @@ add_executable("my-tests")
 target_sources("my-tests" PRIVATE test.cpp)
 
 include(cpp_coverage.cmake)
-_coverage_add_build_options("my-tests")
+burda_cmake_helpers_cpp_coverage_add_build_options("my-tests" PRIVATE)
 ```
 
 ### [warnings.cmake](cmake-helpers/warnings.cmake)
@@ -42,8 +42,8 @@ add_executable("my-project")
 target_sources("my-project" PRIVATE project.cpp)
 
 include(cpp_warnings.cmake)
-_warnings_add_pedantic_level("my-project")
-_warnings_suppress("my-project" "some-specific-warning")
+burda_cmake_helpers_cpp_warnings_add_pedantic_level("my-project" PRIVATE)
+burda_cmake_helpers_cpp_warnings_suppress("my-project" "some-specific-warning" PRIVATE)
 ```
 
 # Build Process
@@ -74,4 +74,4 @@ cmake --build build --config RelWithDebInfo --target check-coverage-files
 
 Where `CMAKE_BUILD_TYPE` and `config` parameters are optional.
 
-Tests are being run in the Continuous Integration environment, see [.travis.yml](.travis.yml).
+Tests are being run in the Continuous Integration environment and code coverage (in the non-optimized mode) is computed, see [.travis.yml](.travis.yml).

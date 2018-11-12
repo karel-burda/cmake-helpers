@@ -22,11 +22,9 @@ target_sources(${PROJECT_NAME}
                        code_coverage_test.hpp
                        integration_test.cpp)
 
-set_target_properties(${PROJECT_NAME}
-                          PROPERTIES
-                              CXX_STANDARD 11
-                              CXX_STANDARD_REQUIRED TRUE
-                              CMAKE_CXX_EXTENSIONS FALSE)
+target_compile_features(${PROJECT_NAME}
+                            PRIVATE
+                                cxx_std_11)
 
 include(cpp_coverage_test.cmake)
 include(cpp_gtest_test.cmake)
