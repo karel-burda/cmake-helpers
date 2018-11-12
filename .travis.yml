@@ -25,7 +25,7 @@ jobs:
 
         - bash <(curl -s https://codecov.io/bash)
         - coveralls -e build/tests/integration/gtest-src -e --gcov-options '\-lp'
-                    -e find build/tests/integration/CMakeFiles -name "CMakeCXXCompilerId.cpp"
+                    -e $(find build/tests/integration/CMakeFiles -name "CMakeCXXCompilerId.cpp")
 
         - set +e
 
