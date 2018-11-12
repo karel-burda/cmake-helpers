@@ -63,7 +63,8 @@ For generation of integration tests (that is actually a full C++ project), execu
 ```cmake
 cmake -Bbuild/tests/integration -Htests/integration -DCMAKE_BUILD_TYPE:STRING=RelWithDebInfo
 
-# On Unixes, this also checks the generated makefile for correct flag when used with -G "Unix Makefiles"
+# On Unixes, this also checks the generated makefile for correct flag when used
+# with the -G "Unix Makefiles"
 cmake --build build/tests/integration --config RelWithDebInfo
 
 # On Unixes you can also run target "check-coverage-files" after the binary was executed

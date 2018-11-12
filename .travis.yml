@@ -1,5 +1,5 @@
 stages:
-  - tests -- linux, debug, gcc, coverage
+  - tests -- linux, debug, g++, coverage
   - tests -- osx, release with debug info, clang
 
 git:
@@ -12,7 +12,7 @@ jobs:
       os: linux
       language: cpp
       env: BUILD_TYPE="Debug"
-      compiler: gcc
+      compiler: g++
       before_install:
         - pip install --user cpp-coveralls
       script:
