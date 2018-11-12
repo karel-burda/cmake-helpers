@@ -2,6 +2,9 @@ stages:
   - tests -- linux, debug, gcc, coverage
   - tests -- osx, release with debug info, clang
 
+git:
+    depth: 1
+
 jobs:
   include:
     - stage: tests -- linux, debug, gcc, coverage
