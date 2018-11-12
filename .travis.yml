@@ -24,7 +24,8 @@ jobs:
         - cmake --build build/tests/integration --config $BUILD_TYPE --target check-coverage-files
 
         - bash <(curl -s https://codecov.io/bash)
-        - coveralls -e build/tests/integration/gtest-src -e --gcov-options '\-lp'
+        - coveralls --gcov-options '\-lp'
+                    -e build/tests/integration/gtest-src
                     -e $(find build/tests/integration/CMakeFiles -name "CMakeCXXCompilerId.cpp")
 
         - set +e
