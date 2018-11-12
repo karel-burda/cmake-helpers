@@ -2,8 +2,9 @@ cmake_minimum_required(VERSION 3.8 FATAL_ERROR)
 
 project(integration-tests LANGUAGES CXX)
 
-message(STATUS "${CMAKE_BUILD_TYPE}")
 if (NOT CMAKE_BUILD_TYPE)
+    message("CMAKE_BUILD_TYPE undefined, setting it to 'Debug'")
+
     set(CMAKE_BUILD_TYPE Debug)
 endif()
 
@@ -26,6 +27,12 @@ set_target_properties(${PROJECT_NAME}
                               CXX_STANDARD 11
                               CXX_STANDARD_REQUIRED TRUE
                               CMAKE_CXX_EXTENSIONS FALSE)
+
+# Needed for the code coverage better results
+target_compile_options(${PROJECT_NAME}
+                            PRIVATE
+                                $<$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>>:
+                                    -fno-inline -fno-inline-small-functions -fno-default-inline>)
 
 include(cpp_coverage_test.cmake)
 include(cpp_gtest_test.cmake)
