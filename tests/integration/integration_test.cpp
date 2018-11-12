@@ -11,7 +11,7 @@ TEST(dummy, compilation_test)
     // deliberately multiple times to inspect coverage reports
     coverage_coverage.make_foo(false);
     coverage_coverage.make_foo(false);
-    coverage_coverage.make_foo(false);
+    coverage_coverage.make_foo(true);
 
     ASSERT_TRUE(true);
 }

@@ -28,12 +28,6 @@ set_target_properties(${PROJECT_NAME}
                               CXX_STANDARD_REQUIRED TRUE
                               CMAKE_CXX_EXTENSIONS FALSE)
 
-# Needed for the code coverage better results
-target_compile_options(${PROJECT_NAME}
-                            PRIVATE
-                                $<$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>>:
-                                    -O0 -fno-inline -fno-inline-small-functions -fno-default-inline>)
-
 include(cpp_coverage_test.cmake)
 include(cpp_gtest_test.cmake)
 include(cpp_warnings_test.cmake)
