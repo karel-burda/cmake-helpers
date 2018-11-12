@@ -7,7 +7,8 @@ namespace cmake
 namespace helpers {
 class code_coverage_test {
     public:
-        void make_foo(const bool should_call_unused) {
+        void make_foo(const bool should_call_unused)
+        {
             foo = true;
 
             if (should_call_unused)
@@ -16,7 +17,8 @@ class code_coverage_test {
             }
         }
 
-        void unused() {
+        void unused()
+        {
             foo = false;
         }
 
