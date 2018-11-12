@@ -32,7 +32,7 @@ set_target_properties(${PROJECT_NAME}
 target_compile_options(${PROJECT_NAME}
                             PRIVATE
                                 $<$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>>:
-                                    -fno-inline -fno-inline-small-functions -fno-default-inline>)
+                                    -O0 -fno-inline -fno-inline-small-functions -fno-default-inline>)
 
 include(cpp_coverage_test.cmake)
 include(cpp_gtest_test.cmake)
