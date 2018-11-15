@@ -7,7 +7,7 @@ git:
 
 jobs:
   include:
-    - stage: tests -- linux, debug, gcc, coverage
+    - stage: tests -- linux, debug, g++, coverage
       dist: trusty
       os: linux
       language: cpp
