@@ -15,5 +15,6 @@ macro(burda_cmake_helpers_cpp_coverage_add_build_options _target _visibility)
         ${_target}
             ${_visibility}
                 $<$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>>:
-                    --coverage>)
+                    -fprofile-arcs
+                    -ftest-coverage>)
 endmacro()
