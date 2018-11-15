@@ -7,7 +7,7 @@ git:
 
 jobs:
   include:
-    - stage: tests -- linux, debug, gcc, coverage
+    - stage: tests -- linux, debug, g++, coverage
       dist: trusty
       os: linux
       language: cpp
@@ -28,7 +28,7 @@ jobs:
         - set +e
 
     - stage: tests -- osx, release with debug info, clang
-      os: linux
+      os: osx
       language: cpp
       env: BUILD_TYPE="RelWithDebInfo"
       compiler: clang
