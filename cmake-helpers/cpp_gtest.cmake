@@ -1,5 +1,5 @@
 # Bootstraps google test (gtest), links it correctly to desired target including compilation options
-macro(burda_cmake_helpers_cpp_gtest_bootstrap_and_link _target _branch_or_tag _build_type)
+macro(burda_cmake_helpers_cpp_gtest_bootstrap_and_link _target _branch_or_tag _build_type _visibility)
     if (NOT MSVC AND ${_build_type} STREQUAL "Debug")
         message(STATUS "Compiling and linking gtest in the Debug mode is currenly only supported on MSVC, using Release")
 
@@ -45,5 +45,9 @@ macro(burda_cmake_helpers_cpp_gtest_bootstrap_and_link _target _branch_or_tag _b
     endif()
 
     find_package(GTest REQUIRED)
-    target_link_libraries(${_target} GTest::GTest GTest::Main)
+    target_link_libraries(
+        ${_target}
+            ${_visibility}
+                GTest::GTest
+                GTest::Main)
 endmacro()
