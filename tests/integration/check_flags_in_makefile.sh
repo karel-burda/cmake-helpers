@@ -14,7 +14,7 @@ function check_flag_in_makefile
 
 readonly BINARY_DIR="$1"
 
-check_flag_in_makefile "test-coverage" "$BINARY_DIR"
+check_flag_in_makefile "coverage" "$BINARY_DIR"
 check_flag_in_makefile "pedantic" "$BINARY_DIR"
 
 set +e
