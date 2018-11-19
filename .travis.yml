@@ -1,14 +1,15 @@
 stages:
-  - tests -- linux, debug, g++, coverage
-  - tests -- osx, release with debug info, clang
+  - tests -- linux, debug, g++, coverage, 64-bit
+  - tests -- osx, release with debug info, clang, 64-bit
+  - tests -- windows, release, msvc, 32-bit
 
 git:
     depth: 1
 
 jobs:
   include:
-    - stage: tests -- linux, debug, g++, coverage
-      dist: trusty
+    - stage: tests -- linux, debug, g++, coverage, 64-bit
+      dist: xenial
       os: linux
       language: cpp
       env: BUILD_TYPE="Debug"
@@ -27,8 +28,9 @@ jobs:
 
         - set +e
 
-    - stage: tests -- osx, release with debug info, clang
+    - stage: tests -- osx, release with debug info, clang, 64-bit
       os: osx
+      osx_image: xcode10.1
       language: cpp
       env: BUILD_TYPE="RelWithDebInfo"
       compiler: clang
@@ -36,6 +38,19 @@ jobs:
         - set -e
 
         - cmake -Bbuild/tests/integration -Htests/integration -G "Unix Makefiles" -DCMAKE_BUILD_TYPE:STRING=$BUILD_TYPE
+        - cmake --build build/tests/integration --config $BUILD_TYPE
+        - build/tests/integration/integration-tests
+
+        - set +e
+
+    - stage: tests -- windows, release, msvc, 32-bit
+      os: windows
+      language: cpp
+      env: BUILD_TYPE="Release"
+      script:
+        - set -e
+
+        - cmake -Bbuild/tests/integration -Htests/integration -DCMAKE_BUILD_TYPE:STRING=$BUILD_TYPE
         - cmake --build build/tests/integration --config $BUILD_TYPE
         - build/tests/integration/integration-tests
 
