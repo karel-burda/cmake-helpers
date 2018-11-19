@@ -50,8 +50,8 @@ jobs:
       script:
         - set -e
 
-        - cmake -Bbuild/tests/integration -Htests/integration -DCMAKE_BUILD_TYPE:STRING=%BUILD_TYPE%
-        - cmake --build build/tests/integration --config %BUILD_TYPE%
-        - build/tests/integration/integration-tests/%BUILD_TYPE%
+        - cmake -Bbuild/tests/integration -Htests/integration -DCMAKE_BUILD_TYPE:STRING=$BUILD_TYPE
+        - cmake --build build/tests/integration --config $BUILD_TYPE
+        - build/tests/integration/integration-tests/$BUILD_TYPE
 
         - set +e
