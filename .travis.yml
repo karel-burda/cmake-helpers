@@ -52,7 +52,6 @@ jobs:
 
         - cmake -Bbuild/tests/integration -Htests/integration -DCMAKE_BUILD_TYPE:STRING=$BUILD_TYPE
         - cmake --build build/tests/integration --config $BUILD_TYPE
-        - dir build/tests/integration
         - build/tests/integration/$BUILD_TYPE/integration-tests
 
         - set +e
