@@ -9,8 +9,8 @@ git:
 jobs:
   include:
     - stage: tests -- linux, debug, coverage, g++, 64-bit
-      dist: xenial
       os: linux
+      dist: xenial
       language: cpp
       env: BUILD_TYPE="Debug"
       compiler: g++
@@ -52,10 +52,6 @@ jobs:
 
         - cmake -Bbuild/tests/integration -Htests/integration -DCMAKE_BUILD_TYPE:STRING=$BUILD_TYPE
         - cmake --build build/tests/integration --config $BUILD_TYPE
-        - dir
-        - dir builds
-        - dir build/tests
-        - dir build\tests
         - dir build/tests/integration
         - build/tests/integration/$BUILD_TYPE/integration-tests
 
