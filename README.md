@@ -74,4 +74,6 @@ cmake --build build --config RelWithDebInfo --target check-coverage-files
 
 Where `CMAKE_BUILD_TYPE` and `config` parameters are optional.
 
-Tests are being run in the Continuous Integration environment and code coverage (in the non-optimized mode) is computed, see [.travis.yml](.travis.yml).
+Tests are being run in the Continuous Integration environment on Linux, OS X and Windows.
+
+Code coverage (in the non-optimized mode) is computed, see [.travis.yml](.travis.yml).
