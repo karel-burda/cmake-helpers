@@ -62,11 +62,11 @@ For generation of integration tests (that is actually a full C++ project), execu
 ```cmake
 cmake -Bbuild/tests/integration -Htests/integration -DCMAKE_BUILD_TYPE:STRING=RelWithDebInfo
 
-# On Unixes, this also checks the generated makefile for correct flag when used
+# on Unixes, this also checks the generated makefile for correct flag when used
 # with the -G "Unix Makefiles"
 cmake --build build/tests/integration --config RelWithDebInfo
 
-# On Unixes you can also run target "check-coverage-files" after the binary was executed
+# on Unixes you can also run target "check-coverage-files" after the binary was executed
 # to inspect whether coverage files had been generated
 ./build/tests/integration
 cmake --build build --config RelWithDebInfo --target check-coverage-files
@@ -77,3 +77,11 @@ Where `CMAKE_BUILD_TYPE` and `config` parameters are optional.
 Tests are being run in the Continuous Integration environment on Linux, OS X and Windows.
 
 Code coverage (in the non-optimized mode) is computed, see [.travis.yml](.travis.yml).
+
+# Continuous Integration
+Continuous Integration is now being run Linux, OS X and Windows on Travis: https://travis-ci.org/karel-burda/cmake-helpers.
+
+The project is using these stages:
+* `tests -- linux, debug, coverage, g++, 64-bit`
+* `tests -- osx, release with debug info, clang, 64-bit`
+* `tests -- windows, release, msvc, 32-bit`
