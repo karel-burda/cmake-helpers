@@ -1,4 +1,4 @@
-![Version](https://img.shields.io/badge/version-1.1.2-green.svg)
+![Version](https://img.shields.io/badge/version-1.1.3-green.svg)
 [![License](https://img.shields.io/badge/license-MIT_License-green.svg?style=flat)](LICENSE)
 [![Build Status](https://travis-ci.org/karel-burda/cmake-helpers.svg?branch=master)](https://travis-ci.org/karel-burda/cmake-helpers)
 [![Codecov Status](https://codecov.io/gh/karel-burda/cmake-helpers/branch/develop/graph/badge.svg)](https://codecov.io/gh/karel-burda/cmake-helpers/branch/develop)
@@ -81,7 +81,7 @@ Code coverage (in the non-optimized mode) is computed, see [.travis.yml](.travis
 # Continuous Integration
 Continuous Integration is now being run Linux, OS X and Windows on Travis: https://travis-ci.org/karel-burda/cmake-helpers.
 
-The project is using these stages:
+The project is using these jobs:
 * `tests -- linux, debug, coverage, g++, 64-bit`
 * `tests -- osx, release with debug info, clang, 64-bit`
 * `tests -- windows, release, msvc, 32-bit`
