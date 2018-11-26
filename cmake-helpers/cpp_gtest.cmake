@@ -45,9 +45,8 @@ macro(burda_cmake_helpers_cpp_gtest_bootstrap_and_link _target _branch_or_tag _b
     endif()
 
     find_package(GTest REQUIRED)
-    target_link_libraries(
-        ${_target}
-            ${_visibility}
-                GTest::GTest
-                GTest::Main)
+    target_link_libraries(${_target}
+                              ${_visibility}
+                                  GTest::GTest
+                                  GTest::Main)
 endmacro()
