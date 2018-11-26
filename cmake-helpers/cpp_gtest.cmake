@@ -14,7 +14,7 @@ macro(burda_cmake_helpers_cpp_gtest_bootstrap_and_link _target _branch_or_tag _b
     set(_source_dir_name gtest-src)
     set(_source_dir_base_path ${CMAKE_BINARY_DIR})
     set(_source_dir_path ${_source_dir_base_path}/${_source_dir_name})
-    set(_cmake_generate_args -DBUILD_GMOCK:BOOL=OFF -DCMAKE_BUILD_TYPE=${_build_type_resolved})
+    set(_cmake_generate_args -DBUILD_GMOCK:BOOL=OFF -DCMAKE_BUILD_TYPE:STRING=${_build_type_resolved})
     if (MSVC)
         list(APPEND _cmake_generate_args -Dgtest_force_shared_crt:BOOL=ON)
     endif()
