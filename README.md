@@ -83,5 +83,5 @@ Continuous Integration is now being run Linux, OS X and Windows on Travis: https
 
 The project is using these jobs:
 * `tests -- linux, debug, coverage, g++, 64-bit`
-* `tests -- osx, release with debug info, clang, 64-bit`
+* `tests -- osx, release with debug info, clang++, 64-bit`
 * `tests -- windows, release, msvc, 32-bit`

@@ -23,12 +23,12 @@ jobs:
 
         - set +e
 
-    - name: "tests -- osx, release with debug info, clang, 64-bit"
+    - name: "tests -- osx, release with debug info, clang++, 64-bit"
       os: osx
       osx_image: xcode10.1
       language: cpp
       env: BUILD_TYPE="RelWithDebInfo"
-      compiler: clang
+      compiler: clang++
       script:
         - set -e
 
