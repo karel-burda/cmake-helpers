@@ -20,7 +20,7 @@ macro(burda_cmake_helpers_cpp_gtest_bootstrap_and_link _target _branch_or_tag _b
     endif()
     set(_cmake_build_args --build . --config ${_build_type_resolved})
 
-    if(NOT EXISTS ${_source_dir_path})
+    if (NOT EXISTS ${_source_dir_path})
         find_package(Git REQUIRED)
 
         execute_process(COMMAND ${GIT_EXECUTABLE} clone -b ${_branch_or_tag} --depth 1 --single-branch --progress --
