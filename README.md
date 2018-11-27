@@ -1,4 +1,4 @@
-![Version](https://img.shields.io/badge/version-1.1.4-green.svg)
+![Version](https://img.shields.io/badge/version-1.1.5-green.svg)
 [![License](https://img.shields.io/badge/license-MIT_License-green.svg?style=flat)](LICENSE)
 [![Build Status](https://travis-ci.org/karel-burda/cmake-helpers.svg?branch=master)](https://travis-ci.org/karel-burda/cmake-helpers)
 [![Codecov Status](https://codecov.io/gh/karel-burda/cmake-helpers/branch/develop/graph/badge.svg)](https://codecov.io/gh/karel-burda/cmake-helpers/branch/develop)
@@ -21,7 +21,7 @@ add_executable("my-tests")
 target_sources("my-tests" PRIVATE test.cpp)
 
 include(cpp_gtest.cmake)
- burda_cmake_helpers_cpp_gtest_bootstrap_and_link("my-tests" "release-1.8.1" "Release" PUBLIC)
+burda_cmake_helpers_cpp_gtest_bootstrap_and_link("my-tests" "release-1.8.1" "Release" PUBLIC)
 ```
 
 ### [cpp_coverage.cmake](cmake-helpers/cpp_coverage.cmake)
@@ -62,7 +62,7 @@ For generation of integration tests (that is actually a full C++ project), execu
 ```cmake
 cmake -Bbuild/tests/integration -Htests/integration -DCMAKE_BUILD_TYPE:STRING=RelWithDebInfo
 
-# on Unixes, this also checks the generated makefile for correct flag when used
+# on Unixes, this also checks the generated makefile for correct flags when used
 # with the -G "Unix Makefiles"
 cmake --build build/tests/integration --config RelWithDebInfo
 
@@ -83,5 +83,5 @@ Continuous Integration is now being run Linux, OS X and Windows on Travis: https
 
 The project is using these jobs:
 * `tests -- linux, debug, coverage, g++, 64-bit`
-* `tests -- osx, release with debug info, clang, 64-bit`
+* `tests -- osx, release with debug info, clang++, 64-bit`
 * `tests -- windows, release, msvc, 32-bit`

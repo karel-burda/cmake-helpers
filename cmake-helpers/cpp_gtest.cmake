@@ -14,13 +14,13 @@ macro(burda_cmake_helpers_cpp_gtest_bootstrap_and_link _target _branch_or_tag _b
     set(_source_dir_name gtest-src)
     set(_source_dir_base_path ${CMAKE_BINARY_DIR})
     set(_source_dir_path ${_source_dir_base_path}/${_source_dir_name})
-    set(_cmake_generate_args -DBUILD_GMOCK:BOOL=OFF -DCMAKE_BUILD_TYPE=${_build_type_resolved})
+    set(_cmake_generate_args -DBUILD_GMOCK:BOOL=OFF -DCMAKE_BUILD_TYPE:STRING=${_build_type_resolved})
     if (MSVC)
         list(APPEND _cmake_generate_args -Dgtest_force_shared_crt:BOOL=ON)
     endif()
     set(_cmake_build_args --build . --config ${_build_type_resolved})
 
-    if(NOT EXISTS ${_source_dir_path})
+    if (NOT EXISTS ${_source_dir_path})
         find_package(Git REQUIRED)
 
         execute_process(COMMAND ${GIT_EXECUTABLE} clone -b ${_branch_or_tag} --depth 1 --single-branch --progress --
@@ -45,9 +45,8 @@ macro(burda_cmake_helpers_cpp_gtest_bootstrap_and_link _target _branch_or_tag _b
     endif()
 
     find_package(GTest REQUIRED)
-    target_link_libraries(
-        ${_target}
-            ${_visibility}
-                GTest::GTest
-                GTest::Main)
+    target_link_libraries(${_target}
+                              ${_visibility}
+                                  GTest::GTest
+                                  GTest::Main)
 endmacro()

@@ -12,7 +12,7 @@ function check_flag_in_makefile
     grep -q "$FLAG" "$MAKEFILE"
 }
 
-readonly BINARY_DIR="$1"
+readonly BINARY_DIR="$PWD"
 
 check_flag_in_makefile "coverage" "$BINARY_DIR"
 check_flag_in_makefile "pedantic" "$BINARY_DIR"

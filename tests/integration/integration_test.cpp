@@ -13,6 +13,6 @@ TEST(dummy, compilation_test)
     coverage_coverage.make_foo(false);
     coverage_coverage.make_foo(true);
 
-    ASSERT_TRUE(true);
+    SUCCEED();
 }
 }

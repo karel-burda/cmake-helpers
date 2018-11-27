@@ -4,7 +4,6 @@ project(integration-tests LANGUAGES CXX)
 
 if (NOT CMAKE_BUILD_TYPE)
     message("CMAKE_BUILD_TYPE undefined, setting it to 'Debug'")
-
     set(CMAKE_BUILD_TYPE Debug)
 endif()
 
@@ -34,7 +33,8 @@ if (UNIX)
     if (CMAKE_GENERATOR MATCHES "Unix Makefiles")
         add_custom_command(TARGET ${PROJECT_NAME}
                            PRE_BUILD
-                           COMMAND bash ${CMAKE_CURRENT_SOURCE_DIR}/check_flags_in_makefile.sh ${CMAKE_CURRENT_BINARY_DIR}
+                           COMMAND bash ${CMAKE_CURRENT_SOURCE_DIR}/check_flags_in_makefile.sh
+                           WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
                            COMMENT "Inspecting generated makefile")
         endif()
 
