@@ -4,7 +4,6 @@ project(integration-tests LANGUAGES CXX)
 
 if (NOT CMAKE_BUILD_TYPE)
     message("CMAKE_BUILD_TYPE undefined, setting it to 'Debug'")
-
     set(CMAKE_BUILD_TYPE Debug)
 endif()
 
