@@ -23,5 +23,6 @@ macro(burda_cmake_helpers_cpp_warnings_suppress _target _warning _visibility)
 
     target_compile_options(${_target}
                                ${_visibility}
-                                   $<$<CXX_COMPILER_ID:GNU>:-Wno-${_warning}>)
+                                   $<$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>>:
+                                       -Wno-${_warning}>)
 endmacro()
