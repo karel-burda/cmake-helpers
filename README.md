@@ -1,4 +1,4 @@
-![Version](https://img.shields.io/badge/version-1.1.5-green.svg)
+![Version](https://img.shields.io/badge/version-1.1.6-green.svg)
 [![License](https://img.shields.io/badge/license-MIT_License-green.svg?style=flat)](LICENSE)
 [![Build Status](https://travis-ci.org/karel-burda/cmake-helpers.svg?branch=master)](https://travis-ci.org/karel-burda/cmake-helpers)
 [![Codecov Status](https://codecov.io/gh/karel-burda/cmake-helpers/branch/develop/graph/badge.svg)](https://codecov.io/gh/karel-burda/cmake-helpers/branch/develop)
@@ -17,32 +17,32 @@ For full examples, see implementation of [tests](tests/integration).
 ### [cpp_gtest.cmake](cmake-helpers/cpp_gtest.cmake)
 Test implemented at: [cpp_gtest_test.cmake](tests/integration/cpp_gtest_test.cmake)
 ```cmake
-add_executable("my-tests")
-target_sources("my-tests" PRIVATE test.cpp)
+add_executable(my-tests)
+target_sources(my-tests PRIVATE test.cpp)
 
 include(cpp_gtest.cmake)
-burda_cmake_helpers_cpp_gtest_bootstrap_and_link("my-tests" "release-1.8.1" "Release" PUBLIC)
+ burda_cmake_helpers_cpp_gtest_bootstrap_and_link(my-tests release-1.8.1 Release PUBLIC)
 ```
 
 ### [cpp_coverage.cmake](cmake-helpers/cpp_coverage.cmake)
 Test implemented at: [cpp_coverage_test.cmake](tests/integration/cpp_coverage_test.cmake)
 ```cmake
-add_executable("my-tests")
-target_sources("my-tests" PRIVATE test.cpp)
+add_executable(my-tests)
+target_sources(my-tests PRIVATE test.cpp)
 
 include(cpp_coverage.cmake)
-burda_cmake_helpers_cpp_coverage_add_build_options("my-tests" PRIVATE)
+burda_cmake_helpers_cpp_coverage_add_build_options(my-tests PRIVATE)
 ```
 
 ### [cpp_warnings.cmake](cmake-helpers/cpp_warnings.cmake)
 Test implemented at: [cpp_warnings_test.cmake](tests/integration/cpp_warnings_test.cmake)
 ```cmake
-add_executable("my-project")
-target_sources("my-project" PRIVATE project.cpp)
+add_executable(my-project)
+target_sources(my-project PRIVATE project.cpp)
 
 include(cpp_warnings.cmake)
-burda_cmake_helpers_cpp_warnings_add_pedantic_level("my-project" PRIVATE)
-burda_cmake_helpers_cpp_warnings_suppress("my-project" "some-specific-warning" PRIVATE)
+burda_cmake_helpers_cpp_warnings_add_pedantic_level(my-project PRIVATE)
+burda_cmake_helpers_cpp_warnings_suppress(my-project some-specific-warning PRIVATE)
 ```
 
 # Build Process
