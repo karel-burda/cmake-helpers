@@ -1,14 +1,14 @@
-![Version](https://img.shields.io/badge/version-1.1.6-green.svg)
+![Version](https://img.shields.io/badge/version-1.1.7-green.svg)
 [![License](https://img.shields.io/badge/license-MIT_License-green.svg?style=flat)](LICENSE)
 [![Build Status](https://travis-ci.org/karel-burda/cmake-helpers.svg?branch=master)](https://travis-ci.org/karel-burda/cmake-helpers)
 [![Codecov Status](https://codecov.io/gh/karel-burda/cmake-helpers/branch/develop/graph/badge.svg)](https://codecov.io/gh/karel-burda/cmake-helpers/branch/develop)
 
-# Introduction
+## Introduction
 `cmake-helpers` features tiny cmake-related functions and macros I'm using across my projects based on CMake.
 
 See [cmake-helpers](cmake-helpers) for main functionality and [tests](tests) for tests.
 
-# Usage
+## Usage
 All cmake functions are located in the [cmake-helpers](cmake-helpers).
 
 ## Examples
@@ -45,7 +45,7 @@ burda_cmake_helpers_cpp_warnings_add_pedantic_level(my-project PRIVATE)
 burda_cmake_helpers_cpp_warnings_suppress(my-project some-specific-warning PRIVATE)
 ```
 
-# Build Process
+## Build Process
 For generation of project containing the implementation and tests, run the cmake in the top-level directory like this:
 
 `cmake .`
@@ -56,7 +56,7 @@ I personally prefer to specify a separate build directory explicitly:
 
 You can of course specify ordinary cmake options like build type (debug, release with debug info, ...), used generator, etc.
 
-# Tests
+## Tests
 For generation of integration tests (that is actually a full C++ project), execute (with example parameters) following:
 
 ```cmake
@@ -78,10 +78,10 @@ Tests are being run in the Continuous Integration environment on Linux, OS X and
 
 Code coverage (in the non-optimized mode) is computed, see [.travis.yml](.travis.yml).
 
-# Continuous Integration
+## Continuous Integration
 Continuous Integration is now being run Linux, OS X and Windows on Travis: https://travis-ci.org/karel-burda/cmake-helpers.
 
 The project is using these jobs:
-* `tests -- linux, debug, coverage, g++, 64-bit`
-* `tests -- osx, release with debug info, clang++, 64-bit`
-* `tests -- windows, release, msvc, 32-bit`
+  * `tests -- linux, debug, coverage, g++, 64-bit`
+  * `tests -- osx, release with debug info, clang++, 64-bit`
+  * `tests -- windows, release, msvc, 32-bit`
