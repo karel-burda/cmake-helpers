@@ -21,7 +21,7 @@ add_executable(my-tests)
 target_sources(my-tests PRIVATE test.cpp)
 
 include(cpp_gtest.cmake)
- burda_cmake_helpers_cpp_gtest_bootstrap_and_link(my-tests release-1.8.1 Release PUBLIC)
+burda_cmake_helpers_cpp_gtest_bootstrap_and_link(my-tests release-1.8.1 Release PUBLIC)
 ```
 
 ### [cpp_coverage.cmake](cmake-helpers/cpp_coverage.cmake)
