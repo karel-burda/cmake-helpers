@@ -1,8 +1,9 @@
 # Base template origin: https://github.com/karel-burda/git-helpers
-# Version: 1.0.0
+# Version: 1.0.1
 
 # General
 build
+cmake-build*
 CMakeFiles
 .DS_Store
 
