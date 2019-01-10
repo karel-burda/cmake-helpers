@@ -9,8 +9,6 @@ jobs:
       language: cpp
       env: BUILD_TYPE="Debug"
       compiler: g++
-      before_install:
-        - pip install --user cpp-coveralls
       script:
         - set -e
 
