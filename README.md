@@ -1,4 +1,4 @@
-![Version](https://img.shields.io/badge/version-1.1.8-blue.svg)
+![Version](https://img.shields.io/badge/version-1.2.0-blue.svg)
 [![License](https://img.shields.io/badge/license-MIT_License-blue.svg?style=flat)](LICENSE)
 [![Build Status](https://travis-ci.org/karel-burda/cmake-helpers.svg?branch=master)](https://travis-ci.org/karel-burda/cmake-helpers)
 [![Codecov Status](https://codecov.io/gh/karel-burda/cmake-helpers/branch/develop/graph/badge.svg)](https://codecov.io/gh/karel-burda/cmake-helpers/branch/develop)
@@ -31,7 +31,8 @@ add_executable(my-tests)
 target_sources(my-tests PRIVATE test.cpp)
 
 include(cpp_coverage.cmake)
-burda_cmake_helpers_cpp_coverage_add_build_options(my-tests PRIVATE)
+# "C" and "CXX" language might be selected
+burda_cmake_helpers_cpp_coverage_add_build_options(my-tests PRIVATE CXX)
 ```
 
 ### [cpp_warnings.cmake](cmake-helpers/cpp_warnings.cmake)
