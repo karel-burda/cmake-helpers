@@ -21,11 +21,11 @@ macro(_burda_cmake_helpers_cpp_warnings_add_pedantic_level _target _visibility _
                                        -Wno-long-long>)
 endmacro()
 
-macro(burda_cmake_helpers_cpp_warnings_suppress_cxx _target _warning _visibility _language)
+macro(burda_cmake_helpers_cpp_warnings_suppress_cxx _target _warning _visibility)
     _burda_cmake_helpers_cpp_warnings_suppress(${_target} ${_warning} ${_visibility} CXX)
 endmacro()
 
-macro(burda_cmake_helpers_cpp_warnings_suppress_c _target _warning _visibility _language)
+macro(burda_cmake_helpers_cpp_warnings_suppress_c _target _warning _visibility)
     _burda_cmake_helpers_cpp_warnings_suppress(${_target} ${_warning} ${_visibility} C)
 endmacro()
 
