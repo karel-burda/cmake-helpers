@@ -22,9 +22,9 @@ macro(burda_cmake_helpers_cpp_gtest_bootstrap_and_link _target _branch_or_tag _b
     set(_cmake_build_args --build . --config ${_build_type_resolved})
 
     if (NOT EXISTS ${_source_dir_path})
-        find_package(Git REQUIRED)
+        find_package(GIT REQUIRED)
 
-        execute_process(COMMAND ${Git_EXECUTABLE} clone -b ${_branch_or_tag} --depth 1 --single-branch --progress --
+        execute_process(COMMAND ${GIT_EXECUTABLE} clone -b ${_branch_or_tag} --depth 1 --single-branch --progress --
                                                   https://github.com/google/googletest.git ${_source_dir_name}
                         WORKING_DIRECTORY ${_source_dir_base_path}
                         TIMEOUT 300)
