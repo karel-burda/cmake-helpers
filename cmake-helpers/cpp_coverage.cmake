@@ -1,8 +1,8 @@
-macro(burda_cmake_helpers_cpp_coverage_add_build_options_cxx _target _visibility _language)
+macro(burda_cmake_helpers_cpp_coverage_add_build_options_cxx _target _visibility)
     _burda_cmake_helpers_cpp_coverage_add_build_options(${_target} ${_visibility} CXX)
 endmacro()
 
-macro(burda_cmake_helpers_cpp_coverage_add_build_options_c _target _visibility _language)
+macro(burda_cmake_helpers_cpp_coverage_add_build_options_c _target _visibility)
     _burda_cmake_helpers_cpp_coverage_add_build_options(${_target} ${_visibility} C)
 endmacro()
 
