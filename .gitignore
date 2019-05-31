@@ -1,5 +1,5 @@
 # Base template origin: https://github.com/karel-burda/git-helpers
-# Version: 1.0.1
+# Version: 1.0.2
 
 # General
 build
@@ -52,3 +52,6 @@ CMakeFiles
 *.class
 *.jar
 *.war
+
+# IDEs
+*.idea
