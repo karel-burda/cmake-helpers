@@ -1,4 +1,4 @@
-# Bootstraps google test (gtest), links it correctly to desired target including compilation options
+# Bootstraps google test, links it correctly to desired target including compilation options
 macro(burda_cmake_helpers_cpp_gtest_bootstrap_and_link _target _branch_or_tag _build_type _visibility)
     if (NOT MSVC AND ${_build_type} STREQUAL "Debug")
         message(STATUS "Compiling and linking gtest in the Debug mode is currenly only supported on MSVC, using Release")
@@ -8,7 +8,9 @@ macro(burda_cmake_helpers_cpp_gtest_bootstrap_and_link _target _branch_or_tag _b
         set(_build_type_resolved ${_build_type})
     endif()
 
-    message(STATUS "Running 'burda_cmake_helpers_cpp_gtest_bootstrap_and_link' with these params: target='${_target}', branch/tag='${_branch_or_tag}', build type='${_build_type_resolved}', visibility='${_visibility}'")
+    message(STATUS "Running 'burda_cmake_helpers_cpp_gtest_bootstrap_and_link' with these params:"
+                   "target='${_target}', branch/tag='${_branch_or_tag}', build type='${_build_type_resolved}', "
+                   "visibility='${_visibility}'")
 
     set(_source_dir_name gtest-src)
     set(_source_dir_base_path ${CMAKE_BINARY_DIR})
@@ -22,7 +24,7 @@ macro(burda_cmake_helpers_cpp_gtest_bootstrap_and_link _target _branch_or_tag _b
     if (NOT EXISTS ${_source_dir_path})
         find_package(Git REQUIRED)
 
-        execute_process(COMMAND ${GIT_EXECUTABLE} clone -b ${_branch_or_tag} --depth 1 --single-branch --progress --
+        execute_process(COMMAND ${Git_EXECUTABLE} clone -b ${_branch_or_tag} --depth 1 --single-branch --progress --
                                                   https://github.com/google/googletest.git ${_source_dir_name}
                         WORKING_DIRECTORY ${_source_dir_base_path}
                         TIMEOUT 300)
