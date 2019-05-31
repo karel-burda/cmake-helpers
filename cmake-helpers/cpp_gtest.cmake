@@ -32,17 +32,24 @@ macro(burda_cmake_helpers_cpp_gtest_bootstrap_and_link _target _branch_or_tag _b
 
     message(STATUS "Will run cmake generate with these args: '${_cmake_generate_args}'")
     execute_process(COMMAND ${CMAKE_COMMAND} ${_cmake_generate_args} .
-                    WORKING_DIRECTORY "${_source_dir_path}")
+                    WORKING_DIRECTORY ${_source_dir_path})
 
     message(STATUS "Will run cmake build with these args: '${_cmake_build_args}'")
     execute_process(COMMAND ${CMAKE_COMMAND} ${_cmake_build_args}
-                    WORKING_DIRECTORY "${_source_dir_path}")
+                    WORKING_DIRECTORY ${_source_dir_path})
 
     set(GTEST_ROOT ${_source_dir_path}/googletest)
 
     if (MSVC)
         file(GLOB _gtest_binaries ${GTEST_ROOT}/${_build_type_resolved}/*.lib)
         file(COPY ${_gtest_binaries} DESTINATION ${GTEST_ROOT})
+
+        if (EXISTS ${GTEST_ROOT}/gtestd.lib)
+            file(RENAME ${GTEST_ROOT}/gtestd.lib ${GTEST_ROOT}/gtest.lib)
+        endif()
+        if (EXISTS ${GTEST_ROOT}/gtest_maind.lib)
+            file(RENAME ${GTEST_ROOT}/gtest_maind.lib ${GTEST_ROOT}/gtest_main.lib)
+        endif()
     endif()
 
     find_package(GTest REQUIRED)
