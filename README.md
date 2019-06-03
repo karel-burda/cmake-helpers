@@ -43,7 +43,7 @@ add_executable(my-project)
 target_sources(my-project PRIVATE project.cpp)
 
 include(cpp_warnings.cmake)
-# For the C, replace "_cxx" with ther "_c"
+# For the C, replace "_cxx" with the "_c"
 burda_cmake_helpers_cpp_warnings_add_pedantic_level_cxx(my-project PRIVATE)
 burda_cmake_helpers_cpp_warnings_suppress_cxx(my-project some-specific-warning PRIVATE)
 ```
