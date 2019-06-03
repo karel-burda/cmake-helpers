@@ -1,5 +1,13 @@
+macro(burda_cmake_helpers_cpp_coverage_add_build_options_cxx _target _visibility)
+    _burda_cmake_helpers_cpp_coverage_add_build_options(${_target} ${_visibility} CXX)
+endmacro()
+
+macro(burda_cmake_helpers_cpp_coverage_add_build_options_c _target _visibility)
+    _burda_cmake_helpers_cpp_coverage_add_build_options(${_target} ${_visibility} C)
+endmacro()
+
 # Adds code coverage compiler & linker flags, works on GNU toolchains
-macro(burda_cmake_helpers_cpp_coverage_add_build_options _target _visibility _language)
+macro(_burda_cmake_helpers_cpp_coverage_add_build_options _target _visibility _language)
     message(STATUS "Running 'burda_cmake_helpers_cpp_coverage_add_build_options' with these params: target='${_target}', visibility='${_visibility}', language='${_language}'")
     target_compile_options(${_target}
                                ${_visibility}
