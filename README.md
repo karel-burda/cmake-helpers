@@ -1,4 +1,4 @@
-![Version](https://img.shields.io/badge/version-1.3.0-blue.svg)
+![Version](https://img.shields.io/badge/version-1.3.1-blue.svg)
 [![License](https://img.shields.io/badge/license-MIT_License-blue.svg?style=flat)](LICENSE)
 [![Build Status](https://travis-ci.org/karel-burda/cmake-helpers.svg?branch=master)](https://travis-ci.org/karel-burda/cmake-helpers)
 [![Codecov Status](https://codecov.io/gh/karel-burda/cmake-helpers/branch/develop/graph/badge.svg)](https://codecov.io/gh/karel-burda/cmake-helpers/branch/develop)
@@ -31,8 +31,9 @@ add_executable(my-tests)
 target_sources(my-tests PRIVATE test.cpp)
 
 include(cpp_coverage.cmake)
-# "C" or "CXX" language might be selected
-burda_cmake_helpers_cpp_coverage_add_build_options(my-tests PRIVATE C)
+burda_cmake_helpers_cpp_coverage_add_build_options_cxx(my-tests PRIVATE)
+# or for the C:
+burda_cmake_helpers_cpp_coverage_add_build_options_c(my-tests PRIVATE)
 ```
 
 ### [cpp_warnings.cmake](cmake-helpers/cpp_warnings.cmake)
@@ -42,8 +43,9 @@ add_executable(my-project)
 target_sources(my-project PRIVATE project.cpp)
 
 include(cpp_warnings.cmake)
-burda_cmake_helpers_cpp_warnings_add_pedantic_level(my-project PRIVATE CXX)
-burda_cmake_helpers_cpp_warnings_suppress(my-project some-specific-warning PRIVATE CXX)
+# For the C, replace "_cxx" with the "_c"
+burda_cmake_helpers_cpp_warnings_add_pedantic_level_cxx(my-project PRIVATE)
+burda_cmake_helpers_cpp_warnings_suppress_cxx(my-project some-specific-warning PRIVATE)
 ```
 
 ## Build Process
