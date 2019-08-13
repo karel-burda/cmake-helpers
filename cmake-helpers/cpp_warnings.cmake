@@ -18,6 +18,10 @@ macro(_burda_cmake_helpers_cpp_warnings_add_pedantic_level _target _visibility _
                                    $<$<OR:$<${_language}_COMPILER_ID:GNU>,$<${_language}_COMPILER_ID:Clang>,$<${_language}_COMPILER_ID:AppleClang>>:
                                        -Wall
                                        -pedantic
+                                       -Wduplicated-cond
+                                       -Wnull-dereference
+                                       -Wold-style-cast
+                                       -Wshadow
                                        -Wno-long-long>)
 endmacro()
 
